@@ -1,0 +1,186 @@
+html, body {
+    font-family: sans-serif;
+    font-size: 12px;
+    height:100%;
+    margin: 0;
+    background-color: #eeeeee;
+    color: #040404;
+}
+
+.topToolbar {
+    height: 30px;
+}
+
+.topToolbarButton {
+    padding-top: 2px;
+    padding-left: 8px;
+    padding-right: 8px;
+    vertical-align: middle;
+}
+
+#content {
+    height: calc(100% - 46px);
+    margin-top: 5px;
+}
+
+.layout {
+    height: 100%;
+}
+
+.layoutUnit {
+    border: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background-color: transparent;
+}
+
+.tree {
+    width: 100% !important;
+    border: none;
+}
+
+.dataTable {
+}
+
+.resourceColumn {
+    padding: 4px !important;
+    font-weight: bolder;
+}
+
+.resourceButton {
+    border: 0 !important;
+    background: transparent !important;
+    margin-right: 4px !important;
+}
+
+.translationOrderColumn {
+    width: 16px;
+    text-align: right;
+}
+
+.translationPageColumn {
+    width: 16px;
+    text-align: right;
+}
+
+.translationParagraphColumn {
+    width: 12px;
+    text-align: right;
+}
+
+.translationOriginalColumn {
+    direction: rtl;
+    line-height: 1.6;
+}
+
+.translationTranslationColumn {
+    width: 50%;
+    line-height: 1.6;
+}
+
+.translationOriginalText {
+    width: 96%;
+} 
+
+.translationTranslationText {
+    width: 96%;
+} 
+
+.translationToolbar {
+    overflow: hidden;
+    margin-bottom: 1px;
+}
+
+.translationToolbarButton {
+    font-size: 11px !important;
+    margin: 2px !important;
+}
+
+.translationFilterPanel {
+    padding: 0 !important;
+    border: 0;
+    border-bottom: 5px solid #eeeeee;
+}
+
+.referenceTopPanel {
+    padding: 0 !important;
+    border: 0;
+    border-top: 5px solid #eeeeee;
+}
+
+.referencePanel {
+    padding: 0 !important;
+    border: 0;
+}
+
+.noteItem {
+    margin-top: 8px;
+}
+
+.noteTextEditor {
+    width: 98%;
+}
+
+.glossaryItem {
+    margin-top: 8px;
+}
+
+.glossaryName {
+    font-weight: bolder;
+}
+
+.glossaryOriginal {
+    font-weight: bolder;
+    margin-left: 12px;
+}
+
+.glossaryOriginalEditor {
+    direction: rtl;
+}
+
+.glossaryGlossaEditor {
+    width: 98%;
+}
+
+.glossaryAssignLink {
+    color: blue !important;
+    font-size: 90% !important;
+}
+
+.glossaryAssignLabel {
+    font-size: 90% !important;
+}
+
+.glossaryAssignField {
+    width: 190px;
+}
+
+.glossaryAssignButtons {
+    margin-bottom: 6px;
+}
+
+.glossaryAssignFilterColumnType {
+    width: 16px;
+}
+
+.glossaryCircle {
+    border: 1px solid gray;
+    border-radius: 7px;
+    float: left;
+    height: 12px;
+    width: 12px;
+    margin-right: 6px;
+}
+
+.suggestionItem {
+    margin-top: 8px;
+}
+
+.generateText {
+    width: 98% !important;
+    height: 386px;
+}
+
+.generateButtons {
+    margin-top: 4px;
+}

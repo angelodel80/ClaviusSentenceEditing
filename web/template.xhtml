@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/override.css"/>
+        <h:outputStylesheet name="./css/editor.css"/>
+        <style type="text/css">
+
+        </style>
+        <title>Clavius Editing Sestences</title>
+    </h:head>
+
+    <h:body >
+
+        <p:growl id="growl" showDetail="true"/>
+
+        <div id="top">
+            <h:form>                
+                <p:toolbar styleClass="topToolbar">
+
+                    <p:toolbarGroup align="left">
+                        <p:commandLink title="Casa" ajax="false" action="#{homeController.homeAction()}">
+                            <p:graphicImage styleClass="topToolbarButton" value="/resources/image/home.png"/>
+                        </p:commandLink>
+                        <p:commandLink title="Utenti" ajax="false" action="#{homeController.userAction()}">
+                            <p:graphicImage styleClass="topToolbarButton" value="/resources/image/user.png"/>
+                        </p:commandLink>
+                        <p:commandLink title="Glossari" ajax="false" action="#{homeController.glossaryAction()}">
+                            <p:graphicImage styleClass="topToolbarButton" value="/resources/image/resource.png"/>
+                        </p:commandLink>
+                        <p:commandLink title="Traduzione" ajax="false" action="#{homeController.translationAction()}">
+                            <p:graphicImage styleClass="topToolbarButton" value="/resources/image/document.png"/>
+                        </p:commandLink>
+                    </p:toolbarGroup>
+
+                   <p:toolbarGroup align="right">
+                        <p:commandLink title="Informazioni" >
+                            <p:graphicImage styleClass="topToolbarButton" value="/resources/image/info.png"/>
+                        </p:commandLink>
+                        <p:commandLink title="Segnalazioni">
+                            <p:graphicImage styleClass="topToolbarButton" value="/resources/image/error.png"/>
+                        </p:commandLink>
+                        <p:menuButton styleClass="topToolbarButton" value="#{loginController.account.name}">
+                            <p:menuitem icon="ui-icon-pencil" value="Modifica" />
+                            <p:menuitem icon="ui-icon-power" value="Esci" ajax="false" action="#{homeController.exitAction()}"/>
+                        </p:menuButton>
+                    </p:toolbarGroup>
+
+                </p:toolbar>
+            </h:form>
+        </div>
+
+        <div id="content">
+            <ui:insert name="content"/>
+        </div>
+
+    </h:body>
+
+</html>
