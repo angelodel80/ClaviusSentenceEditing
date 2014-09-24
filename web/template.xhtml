@@ -25,7 +25,7 @@
             <h:form>                
                 <p:toolbar styleClass="topToolbar">
 
-                    <p:toolbarGroup align="left">
+                    <f:facet name="left">
                         <p:commandLink title="Casa" ajax="false" action="#{homeController.homeAction()}">
                             <p:graphicImage styleClass="topToolbarButton" value="/resources/image/home.png"/>
                         </p:commandLink>
@@ -38,9 +38,9 @@
                         <p:commandLink title="Traduzione" ajax="false" action="#{homeController.translationAction()}">
                             <p:graphicImage styleClass="topToolbarButton" value="/resources/image/document.png"/>
                         </p:commandLink>
-                    </p:toolbarGroup>
+                    </f:facet>
 
-                   <p:toolbarGroup align="right">
+                   <f:facet name="right">
                         <p:commandLink title="Informazioni" >
                             <p:graphicImage styleClass="topToolbarButton" value="/resources/image/info.png"/>
                         </p:commandLink>
@@ -51,7 +51,7 @@
                             <p:menuitem icon="ui-icon-pencil" value="Modifica" />
                             <p:menuitem icon="ui-icon-power" value="Esci" ajax="false" action="#{homeController.exitAction()}"/>
                         </p:menuButton>
-                    </p:toolbarGroup>
+                    </f:facet>
 
                 </p:toolbar>
             </h:form>
