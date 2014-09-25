@@ -29,10 +29,10 @@ public class HomeController extends BaseController {
     }
 
     public String glossaryAction() {
-        return "glossaryView";
+        return "proofReaderView";
     }
 
-    public String translationAction() {
-        return "translationView";
+    public String transcriptionAction() {
+        return "transcriptionView";
     }
 }
