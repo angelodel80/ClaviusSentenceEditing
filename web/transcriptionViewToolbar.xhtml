@@ -1,0 +1,48 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+           <p:toolbar styleClass="translationToolbar" >
+            <f:facet name="left">
+
+                <p:menuButton styleClass="translationToolbarButton" value="Nuovo" disabled="">
+                    <p:menuitem styleClass="translationToolbarButton" icon="ui-icon-plus" value="Nuova Stringa"
+                                disabled=""
+                               
+                                />
+
+                    <p:menuitem styleClass="translationToolbarButton" icon="ui-icon-plus" value="Nuova UL" 
+                                disabled=""
+                                
+                                />
+
+                    <p:menuitem styleClass="translationToolbarButton" icon="ui-icon-plus" value="Nuovo Blocco" 
+                                disabled=""
+                              
+                                />
+
+                    <p:separator/>
+
+                    <p:menuitem styleClass="translationToolbarButton" icon="ui-icon-plus" value="Genera UL" 
+                                disabled=""
+                               
+                                />
+                </p:menuButton>
+
+                <p:commandButton styleClass="translationToolbarButton" icon="ui-icon-trash" value="Rimuovi"
+                                 disabled=""
+                                 
+                                 />
+
+
+            </f:facet>
+
+            <f:facet name="right">
+                <p:commandButton styleClass="translationToolbarButton" icon="ui-icon-document" value="Dettagli"/>
+               
+            </f:facet>
+        </p:toolbar>
+
+</ui:composition>

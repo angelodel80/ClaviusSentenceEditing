@@ -8,8 +8,8 @@
     <ui:composition>
        <p:layout styleClass="layout">
 
-                <p:layoutUnit header="Risorse" styleClass="layoutUnit" position="west" size="25%" resizable="true">
-                    
+                <p:layoutUnit header="Risorse" styleClass="layoutUnit" position="west" size="20%" resizable="true">
+                     <ui:include src="transcriptionViewTreeSentences.xhtml" />
                 </p:layoutUnit>
 
                 <p:layoutUnit styleClass="layoutUnit" position="center">
@@ -21,13 +21,13 @@
                          </p:layoutUnit>
 
                         <p:layoutUnit styleClass="layoutUnit" position="south">
-                            <h:outputText value="Area di trascrizione" />
+                            <ui:include src="transcriptionViewToolbar.xhtml" />
                         </p:layoutUnit>
 
                     </p:layout>
                 </p:layoutUnit>
 
-                <p:layoutUnit header="Riferimenti" styleClass="layoutUnit" position="east" size="25%" resizable="true">
+                <p:layoutUnit header="Riferimenti" styleClass="layoutUnit" position="east" size="15%" resizable="true">
                   
                 </p:layoutUnit>
 
