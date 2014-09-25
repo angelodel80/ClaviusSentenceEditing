@@ -16,8 +16,6 @@ import java.util.List;
  */
 public class CophiMenager {
     
-    
-    
     public List<String> getTokens(){
     String[] tokens = null;
     Document mydoc = Document.getDefaultDoc();

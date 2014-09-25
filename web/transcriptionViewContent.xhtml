@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <ui:composition>
+       <p:layout styleClass="layout">
+
+                <p:layoutUnit header="Risorse" styleClass="layoutUnit" position="west" size="25%" resizable="true">
+                    
+                </p:layoutUnit>
+
+                <p:layoutUnit styleClass="layoutUnit" position="center">
+                    <p:layout styleClass="layout">
+
+                        <p:layoutUnit styleClass="layoutUnit" position="center">
+                            <ui:include src="transcriptionViewImage.xhtml" />
+                            <ui:include src="transcriptionViewText.xhtml" />
+                         </p:layoutUnit>
+
+                        <p:layoutUnit styleClass="layoutUnit" position="south">
+                            <h:outputText value="Area di trascrizione" />
+                        </p:layoutUnit>
+
+                    </p:layout>
+                </p:layoutUnit>
+
+                <p:layoutUnit header="Riferimenti" styleClass="layoutUnit" position="east" size="25%" resizable="true">
+                  
+                </p:layoutUnit>
+
+            </p:layout>
+
+    </ui:composition>
+
+</html>
