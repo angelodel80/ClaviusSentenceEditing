@@ -4,6 +4,7 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <p:graphicImage height="auto" width="100%" value="/resources/lettersImgs/136/sentencesImgs/s3.png" alt="Immagine"/>
-
+    <h:form id="formimage">
+        <p:graphicImage id="imagearea" height="auto" width="100%" value="/resources/lettersImgs/136/sentencesImgs/s#{transcriptionController.sentenceIdentificator}.png" alt="Immagine"/>
+    </h:form>
 </ui:composition>

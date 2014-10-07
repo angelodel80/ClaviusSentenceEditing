@@ -20,6 +20,9 @@
                 </library>
                 <library dirs="200">
                     <file>${reference.Cophi-Commons.jar}</file>
+                </library>
+                <library dirs="200">
+                    <file>${libs.jdom2.classpath}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
             </web-module-libraries>

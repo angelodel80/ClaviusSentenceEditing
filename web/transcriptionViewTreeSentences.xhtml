@@ -4,9 +4,34 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <p:tree>
-        <p:treeNode >
-            <h:outputText value="sentence" />
-        </p:treeNode>
-    </p:tree>
+    <h:form id="sentencelist">
+        <p:accordionPanel>
+            <p:tab title="Letter 136 APUG 530 cc.138-139">
+
+                <p:commandLink update=":formimage:imagearea" actionListener="#{transcriptionController.selectSentence(1)}" style="display: block; text-decoration: none">
+                    <h:outputText value="sentence number 1" />
+                </p:commandLink>
+
+                <p:commandLink update=":formimage:imagearea" actionListener="#{transcriptionController.selectSentence(2)}" style="display: block; text-decoration: none">
+
+                    <h:outputText value="sentence number 2" />
+                </p:commandLink>
+
+                <p:commandLink update=":formimage:imagearea" actionListener="#{transcriptionController.selectSentence(3)}" style="display: block; text-decoration: none">
+                    <h:outputText value="sentence number 3" />
+
+                </p:commandLink>
+                <p:commandLink update=":formimage:imagearea" actionListener="#{transcriptionController.selectSentence(4)}" style="display: block; text-decoration: none">
+                    <h:outputText value="sentence number 4" />
+                </p:commandLink>
+                <p:commandLink update=":formimage:imagearea" actionListener="#{transcriptionController.selectSentence(5)}" style="display: block; text-decoration: none">
+                    <h:outputText value="sentence number 5" />
+                </p:commandLink>
+
+            </p:tab>
+            <p:tab title="Letter 147 APUG 530 cc.129-130">
+
+            </p:tab>
+        </p:accordionPanel>
+    </h:form>
 </ui:composition>

@@ -1,0 +1,300 @@
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>Botwid di Närke a Christoph Clavius in Roma, Madrid 25 febbraio 1597</title>
+                <author>Botwid di Närke</author>
+                <respStmt>
+                    <resp>transcription by</resp>
+                    <name>Ugo Baldini</name>
+                    <name>Pier Daniel Napolitani</name>
+                </respStmt>
+                <respStmt>
+                    <resp>revision by</resp>
+                    <name>Lorenzo Mancini</name>
+                </respStmt>
+            </titleStmt>
+            <editionStmt>
+                <edition>Digital Edition<date ana="2013-10">october 2013</date>
+                </edition>
+                <respStmt>
+                    <resp>encoding by</resp>
+                    <name>Angelo Mario Del Grosso</name>
+                    <name>Damiana Luzzi</name>
+                    <name>Lorenzo Mancini</name>
+                </respStmt>
+            </editionStmt>
+            <publicationStmt>
+                <pubPlace>Roma</pubPlace>
+                <publisher>Archivio storico della Pontificia Università Gregoriana</publisher>
+                <date>2013</date>
+            </publicationStmt>
+            <sourceDesc>
+                <msDesc>
+                    <msIdentifier>
+                        <settlement>Roma</settlement>
+                        <repository>Archivio Storico della Pontificia Università Gregoriana (APUG)</repository>
+                        <idno>APUG 530, cc. 138-139</idno>
+                    </msIdentifier>
+                    <msContents>
+                        <msItem>
+                            <author xml:lang="ita">Botwid di Närke</author>
+                            <author xml:lang="lat">Botvitus Nericius</author>
+                            <title type="uniform" xml:lang="ita">Botwid di Närke a Christoph Clavius in Roma, Madrid 25 febbraio 1597</title>
+                            <title type="uniform" xml:lang="eng">Botwid of Närke to Christoph Clavius in Rome, Madrid 25th February 1597</title>
+                            <incipit xml:lang="lat">Mense praeterito, religiosissime et doctissime Clavi, prolatus fuit in hac regali Academia locus commentationis tuae in Euclidem...</incipit>
+                            <textLang mainLang="lat">Latin</textLang>
+                        </msItem>
+                    </msContents>
+                    <physDesc>
+                        <objectDesc>
+                            <supportDesc>
+                                <support>
+                                    <material>Carta</material>
+                                    <watermark>Croce inscritta in un cerchio la cui circonferenza si chiude nella
+                                parte bassa con una punta; sotto la figura sono presenti due caratteri, uno illeggibile, l'altro è una "A". Filigrana non 
+                            identificata ma probabilmente di area spagnola. Non corrisponde a nessuna delle altre
+                            filigrane presenti nelle lettere di Botwid di Narke a Clavius.</watermark>
+                                </support>
+                                <extent>
+                                    <measure>2 cc.</measure>
+                                    <dimensions unit="mm">
+                                        <height>307</height>
+                                        <depth>220</depth>
+                                    </dimensions>
+                                </extent>
+                                <foliation>Numerazione effettuata con numeratore meccanico. Presente altra numerazione a matita a c. 138r: 70.</foliation>
+                                <condition>
+                                    <p>La c. 139 presenta una mancanza nell'angolo adiacente la piega del fascicolo.</p>
+                                    <p>Stato di conservazione mediocre. Nonostante il restauro effettuato nel 2012, che ha risarcito alcune mancanze, l'inchiostro traspare vistosamente e rende 
+                                    il testo poco leggibile in alcuni punti.</p>
+                                </condition>
+                            </supportDesc>
+                        </objectDesc>
+                        <handDesc>
+                            <p>Il testo della lettera non è autografo e presenta una sola mano, diversa da quelle riscontrate nelle altre 
+                            lettere non autografe di Botwid di Narke (cfr. APUG 530, cc. 129-130, 131, 132-133, 134-137). L'autore scrive di proprio 
+                            pugno solo il "mp" (manu propria) che segue la firma (c. 139r).</p>
+                        </handDesc>
+                    </physDesc>
+                    <history>
+                        <p>Il manoscritto contiene una delle lettere inviate da Botwid di Narke a Cristoph Clavius (1537-1612), matematico gesuita del Collegio Romano. L'epistolario claviano è conservato
+                    in massima parte nei codici APUG 529-530, facenti parte del fondo manoscritto proveniente dalla Bibliotheca Maior del Collegio Romano.</p>
+                    </history>
+                    <additional>
+                        <listBibl>
+                            <bibl>
+                                <author>Cristoph Clavius</author>
+                                <title>Corrispondenza</title>
+                                <editor>
+                                    <name>Ugo Baldini</name>
+                                    <name>Pier Daniel Napolitani</name>
+                                </editor>
+                                <pubPlace>Pisa</pubPlace>
+                                <publisher>Università di Pisa. Dipartimento di matematica</publisher>
+                                <date>1992</date>
+                            </bibl>
+                        </listBibl>
+                    </additional>
+                </msDesc>
+            </sourceDesc>
+        </fileDesc>
+    </teiHeader>
+    <text>
+        <body xml:lang="lat">
+            <div type="letter" n="l_530-136">
+                <div type="opener" n="o_01">
+                    <ab type="parag" n="ab_01">
+                        <milestone unit="page" n="138r"/>
+                        <s type="sentence" n="s_01">
+                            <lb n="01"/>Botvitus Nericius Christophoro Clavio S.
+                        </s>
+                    </ab>
+                </div>
+                <div type="body_text" n="t_01">
+                    <ab type="parag" n="ab_02">
+                        <s type="sentence" n="s_02">
+                            <lb n="02"/>Mense praeterito, religiosissime et doctissime Clavi, prolatus fuit in hac regali Academia 
+                            <lb n="03"/>locus commentationis tuae in Euclidem, quo loco conaris docere veram rationum <w>com
+                            <lb n="04"/>positionem</w> intelligendam esse ex sententia Volumnii Spoletini et Hieronymi Cardani: 
+                            <lb n="05"/>nostram vero, id est, vulgatam, continuationem esse proportionum, non compositionem.
+                        </s>
+                        <s type="sentence" n="s_03">
+                            <lb n="06"/>responsum autem est, non videri eam, quam tu adfers, esse rationum compositionem;
+                            <lb n="07"/>verum, ut tute fateris, additionem numerorum in particulas distributorum, quas 
+                            <lb n="08"/>minutias vulgus appellat: <choice>
+                                <abbr>idq.</abbr>
+                                <expan>idque</expan>
+                            </choice> ut ita existimaremus, effecerunt argumenta, 
+                            <lb n="09"/>quibus eam niteris confirmare; in quibus nihil, sane, apparet, quamobrem 
+                            <lb n="10"/>aliter sit sentiendum. </s>
+                        <s type="sentence" n="s_04">
+                            nam, sequeretur, ais, partem fore, vel aequalem, vel <choice>
+                                <abbr>maiore</abbr>
+                                <expan>maiorem</expan>
+                            </choice>, 
+                            <lb n="11"/>toto; quorum hoc ex 1. 10. 100., illud in 4. 4. 4. est evidens.
+                        </s>
+                        <s type="sentence" n="s_05">idem eveniret in 
+                            <lb n="12"/>aliis non continenter analogis; <choice>
+                                <abbr>idemq.</abbr>
+                                <expan>idemque</expan>
+                            </choice> in numeris planis.
+                        </s>
+                        <s type="sentence" n="s_06">denique sequeretur 
+                            <lb n="13"/>totum augeri non posse, licet ei partes infinitae iungerentur.
+                        </s>
+                        <s type="sentence" n="s_07">quae omnia <w>ma
+                            <lb n="14"/>thematum</w> principiis repugnant. 
+                        </s>
+                        <s type="sentence" n="s_08">accedit, colophonis loco, communis mortalium 
+                            <lb n="15"/>sensus, quo iudice, vere cognoscitur, duas triplas efficere sextuplam: et triplam
+                            <lb n="16"/>atque quinctuplam constituere octuplam.
+                        </s>
+                        <s type="sentence" n="s_09">multa alia his adiungi possent, quae 
+                            <lb n="17"/>tu nobis, liberalitate ingenii tui, remisisti.
+                        </s>
+                        <s type="sentence" n="s_10">Verum, quia, Euclide doctore didicimus,
+                            <lb n="18"/>rationem rationibus constare, cum rationum quantitates, inter se multiplicatae,
+                            <lb n="19"/>aliquam effecerint rationem; fit, ut additio tua, utpote ab hac diversa, locum hic 
+                            <lb n="20"/>habere non possit.
+                        </s>
+                        <s type="sentence" n="s_11">illud etiam, eodem auctore, constat, tribus existentibus <w>mag
+                            <lb n="21"/>nitudinibus</w> analogis, primae ad tertiam duplicatam rationem dici eius, quae 
+                            <lb n="22"/>fuerit ad secundam: ut vides in 1. 10. 100. exemplo abs te allato; quo sensu 
+                            <lb n="23"/>percepto, illico evanescit magna illa proportionum acervatio, quam, miro 
+                            <lb n="24"/>studio, hic tibi imaginaris.
+                        </s>
+                        <s type="sentence" n="s_12">nec difficile est, ad argumenta respondere;
+                        <milestone unit="page" n="138v"/>
+                            <lb n="01"/>Una siquidem responsio cuncta evertit: videlicet, hic, proprie, non esse partes, nec totum,
+                            <lb n="02"/>sed proportiones, quae sunt merae tum magnitudinum, tum numerorum inter se 
+                            <lb n="03"/>r<add hand="Botwid di Närke" place="above">el</add>ationes; partes autem et totum in quantitatibus spectari, non in quantitatum 
+                            <lb n="04"/>relationibus. 
+                        </s>
+                        <s type="sentence" n="s_13">
+                            Verumtamen singula persequamur.
+                        </s>
+                        <s type="sentence" n="s_14">Subdecupla, non est maior 
+                            <lb n="05"/>subcentupla, immo illa decuplo minor, ut clarum est, naturam proportionis <w>mino
+                            <lb n="06"/>ris</w> inaequalitatis perpendenti; licet in numeris alia sit ratio, de quibus <w>argumen
+                            <lb n="07"/>tum</w> procedit.
+                        </s>
+                        <s type="sentence" n="s_15">nec mirandum est, si 4. 4. 4. eadem reddant, cum sit proportio 
+                            <lb n="08"/>aequalitatis; sed et hoc argumentum est de numeris, sicut et duo sequentia.
+                        </s>
+                        <s type="sentence" n="s_16">
+                            <lb n="09"/>quinctum quoque de numeris praecipue est, ex quo vel solo argumento <w>manifes
+                            <lb n="10"/>tum</w> est, de proportionibus ne somniasse quidem Volumnium, cum haec scriberet, 
+                            <lb n="11"/>sed tantum de numeris. 
+                        </s>
+                        <s type="sentence" n="s_17">
+                           etenim, quis geometres unquam dixerit, proportiones
+                            <lb n="12"/>extremorum inter se augeri posse in compositione, propter interpositionem 
+                            <lb n="13"/>quotcumque mediorum?
+                        </s>
+                        <s type="sentence" n="s_18">
+                            numeros antecedentium et consequentium infinite 
+                            <lb n="14"/>maiores fieri, manifestae est veritatis; non autem proportiones; ut prima <w>res
+                            <lb n="15"/>ponsio</w> satis declarat. 
+                        </s>
+                        <s type="sentence" n="s_19">
+                                nec communis hominum intelligentia, quam, velut 
+                            <lb n="16"/>triarios, ad ultimos casus tibi, reservasti, quidquam prodest.
+                       </s>
+                        <s type="sentence" n="s_20">
+                            nam, ut quilibet
+                            <lb n="17"/>ex innumerabili multitudine intelligat, trianguli quaevis duo latera reliquo
+                           <lb n="18"/>esse maiora; <choice>
+                                <abbr>similiterq.</abbr>
+                                <expan>similiterque</expan>
+                            </choice> tria, bis sumpta, esse sex; non tamen laterum 
+                            <lb n="19"/>et numerorum potentiam, aequa facilitate, immo nunquam, sine geometriae
+                            <lb n="20"/>cognitione, edissertabit.
+                        </s>
+                        <s type="sentence" n="s_21">
+                            at compositio rationum, non ex numeris coniunctis
+                            <lb n="21"/>fit, sed ex numerorum potentia. 
+                        </s>
+                        <s type="sentence" n="s_22">
+                                quare, nec duae triplae sextuplam; verum 
+                            <lb n="22"/>nonuplam, nec tripla et quinctupla octuplam, sed quindecuplam, constituunt. 
+                        </s>
+                        <s type="sentence" n="s_23">
+                            <lb n="23"/>hactenus ergo, nisi fallor, ostendimus, compositionem nostram, non esse 
+                            <lb n="24"/>tuam additionem. 
+                        </s>
+                        <s type="sentence" n="s_24">
+                                Estne, tamen dicenda additio proportionum? 
+                        </s>
+                        <s type="sentence" n="s_25">
+                                Si additio 
+                            <lb n="25"/>dicitur, <choice>
+                                <sic>que</sic>
+                                <corr source="Il carteggio di Christophorus Calvius, v. 4, pt. 1">quae</corr>
+                            </choice> plura componit, et, ut ita dicam, in unum congregat; additio
+                        <milestone unit="page" n="139r"/>
+                            <lb n="01"/>erit haec nostra.
+                    </s>
+                        <s type="sentence" n="s_26">
+                        quae, licet per multiplicationem fiat, non iccirco tamen erit <w>pro
+                        <lb n="02"/>portionum</w> multiplicatio, aut continuatio, ut tibi videtur; immo illi opposita, 
+                        <lb n="03"/>ut videre est passim; praesertim vero in Arithmetica positionis Arabicae, quam 
+                        <lb n="04"/>Algebram nonnulli vocant. 
+                        </s>
+                        <s type="sentence" n="s_27">
+                        Haec breviter, cum pro iure collegii Germanici, 
+                        <lb n="05"/>tum antiquae amicitiae nostrae, ad te, non ambitionis, sed veritatis caussa; 
+                        <lb n="06"/>non ut te doceremus; sed ut ad docendum provocaremus; scripsimus, quae te 
+                        <lb n="07"/>in eam sententiam accepturum, non dubitamus.
+                        </s>
+                    </ab>
+                </div>
+                <div type="closer" n="c_03">
+                    <ab type="no_parag" n="ab_03">
+                        <s type="sentence" n="s_28">
+                        Bene vale; et me, <choice>
+                                <abbr>
+                                    <w>cete
+                            <lb n="08"/>rosq.</w>
+                                </abbr>
+                                <expan>ceterosque</expan>
+                            </choice> academicos tui studiosissimos esse, tibi certo persuade. 
+                        </s>
+                        <s type="dateline" n="s_29">
+                   Mantua 
+                        <lb n="09"/>Carpentaniae. <date ana="1597-02-25">V. <choice>
+                                    <abbr>Cal.</abbr>
+                                    <expan>Calendas</expan>
+                                </choice> martias. <choice>
+                                    <abbr>an.</abbr>
+                                    <expan>annnum</expan>
+                                </choice> M. D. LXXXXVII.</date>
+                        </s>
+                    </ab>
+                    <ab type="parag" n="ab_04">
+                        <s type="sentence" n="s_30">
+                            <lb n="10"/>
+                            <signatures n="01">Botvitus Nericius de Sala, natione Gothus. <choice>
+                                    <abbr>mp</abbr>
+                                    <expan>manu propria</expan>
+                                </choice>
+                            </signatures>
+                        </s>
+                    </ab>
+                    <ab type="parag" n="ab_05">
+                        <milestone unit="page" n="139v"/>
+                        <s type="address" n="s_31">
+                            <lb n="01"/>Viro religiosissimo et doctissimo, <w>Christo
+                     <lb n="02"/>phoro</w> Clavio, Sacerdoti, Societatis Jhesu,
+                     <lb n="03"/>Mathematicorum nostri temporis facile
+                     <lb n="04"/>Principi.
+                     <lb n="05"/>Romam 
+                   </s>
+                    </ab>
+                </div>
+            </div>
+        </body>
+    </text>
+</TEI>

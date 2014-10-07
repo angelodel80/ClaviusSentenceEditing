@@ -4,9 +4,9 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <p:separator style="height: 2em; width: 70%" />
+    <p:separator style="height: 1em; width: 70%" />
 
-    <h:form id="transcriptionsentenceform">
-        <p:inputTextarea id="transcriptionsentencearea" cols="100" value="#{transcriptionController.sentence}"  />
+    <h:form id="teiform">
+        <h:outputText value="#{transcriptionController.template}"  />
     </h:form>
 </ui:composition>
