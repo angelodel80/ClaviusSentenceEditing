@@ -57,13 +57,18 @@ public class TranscriptionController extends BaseController implements Serializa
         this.template = template;
     }
    
-    
-    public void selectSentence(String id){
+    public void selectSentence(String id, String idLetter){
+        //System.err.println("selectSentence: " + id + " -- letter: " + idLetter);
         sentence.setIdentificator(id);
+        sentence.setLetterIdentificator(idLetter);
     }
     
     public String getSentenceIdentificator(){
         return this.sentence.getIdentificator();
+    }
+    
+    public String getLetterIdentificator(){
+        return this.sentence.getLetterIdentificator();
     }
     
     public void save(){
