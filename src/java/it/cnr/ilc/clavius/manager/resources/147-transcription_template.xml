@@ -1,32 +1,33 @@
 <TEI>
     <text>
         <body xml:lang="lat">
-            <div type="letter" n="l_530-136">
+            <div type="letter" n="l_530-147">
                 <div type="opener" n="o_01">
                     <ab type="parag" n="ab_01">
-                        <milestone unit="page" n="138r"/>
+                        <milestone unit="page" n="129r"/>
                         <s type="sentence" n="s_01">
                             
                         </s>
                     </ab>
                 </div>
-                <div type="body_text" n="t_01">
+                <div type="body_text" n="t_02">
                     <ab type="parag" n="ab_02">
                         <s type="sentence" n="s_02">
-                           
-                        </s>
+                            
+                </s>
                         <s type="sentence" n="s_03">
-                            
+						
+                </s>
                         <s type="sentence" n="s_04">
-                            
-                        </s>
+						
+                </s>
                         <s type="sentence" n="s_05">
-                            
-                        </s>
+						
+                </s>
                         <s type="sentence" n="s_06">
-                            
-                        </s>
-                    </ab>
+						
+                </s>
+                  </ab>
                 </div>
                 
             </div>

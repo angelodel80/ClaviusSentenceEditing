@@ -1,6 +1,6 @@
 <TEI>
     <text>
-        <body xml:lang="lat">
+        <body xml:lang="lat">          
             <div type="letter" n="l_530-136">
                 <div type="opener" n="o_01">
                     <ab type="parag" n="ab_01">
@@ -17,6 +17,8 @@
                         </s>
                         <s type="sentence" n="s_03">
                             
+                        </s>
+                            
                         <s type="sentence" n="s_04">
                             
                         </s>
@@ -28,7 +30,6 @@
                         </s>
                     </ab>
                 </div>
-                
             </div>
         </body>
     </text>

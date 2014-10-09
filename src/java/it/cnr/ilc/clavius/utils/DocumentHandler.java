@@ -16,7 +16,7 @@ public class DocumentHandler {
 	public static Document insertSentence(Sentence sentence, Document templateDoc){
 		Document ret = templateDoc;
 		XPathFactory xpfac = XPathFactory.instance();
-		XPathExpression<Element> xp = xpfac.compile("/TEI/s[@n="+sentence.getId()+"]", Filters.element());
+		XPathExpression<Element> xp = xpfac.compile("//s[@n='"+sentence.getId()+"']", Filters.element());
 		Element sentenceElement = xp.evaluateFirst(templateDoc);
 		sentenceElement.setText(sentence.getText());
 		return ret;

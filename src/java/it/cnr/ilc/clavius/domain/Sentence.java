@@ -18,8 +18,8 @@ public class Sentence {
     public static final String DEF_CONTENT = "transcribe the sentence above....";
 
     public Sentence() {
-    this.identificator = "1";
-    this.identificator = "136";
+    this.identificator = "s_01";
+    this.letterIdentificator = "136";
     }
     
     
