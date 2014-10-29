@@ -6,17 +6,27 @@
 
 package it.cnr.ilc.clavius.manager;
 
+import ilc.cnr.it.clavius.corpus.TextHandler;
+import it.cnr.ilc.clavius.domain.HierarchicalTeiDocument;
+import it.cnr.ilc.clavius.utils.ExistManager;
+
 import it.cnr.ilc.clavius.domain.Sentence;
+import it.cnr.ilc.clavius.manager.action.Lemmatizer;
 import it.cnr.ilc.clavius.utils.DocumentHandler;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
+import org.jdom2.Content;
 import org.jdom2.Document;
+import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 
@@ -25,14 +35,21 @@ import org.jdom2.input.SAXBuilder;
  * @author Angelo Del Grosso
  */
 public class TranscriptionManager {
+    
+    public static String BASE_URL = "http://claviusontheweb.it:8080/exist/rest//db/clavius/documents/";
+    public static String DOC_SUFFIX = "-transcription.xml";
+    
     private Document docTemplate;
     private SAXBuilder builder;
     private Map<String,Document> MapTemplates;
+    
+    private HierarchicalTeiDocument teiDoc;
 
-   
+
     @PostConstruct
     public void init(){
         builder = new SAXBuilder();
+        teiDoc = new HierarchicalTeiDocument();
         MapTemplates = initTemplates();
     }
     
@@ -55,7 +72,25 @@ public class TranscriptionManager {
     public String getContentDefault(){
         return Sentence.DEF_CONTENT;
     }
+    
+    public Document getDoc(String ResourceIdentificator)throws Exception{
+        
+        String TeiString = ExistManager.FromRemoteFileToString(
+                BASE_URL.concat(ResourceIdentificator).concat("/").concat(ResourceIdentificator).concat(DOC_SUFFIX));
+        teiDoc.setTeiDocument(builder.build(new StringReader(TeiString)));
+        Element rootText = getTeiDoc().getText().clone();
+        return new Document(rootText);
+    }
+    
+        public HierarchicalTeiDocument getTeiDoc() {
+        return teiDoc;
+    }
 
+    public void setTeiDoc(HierarchicalTeiDocument teiDoc) {
+        this.teiDoc = teiDoc;
+    }
+
+    
     public void save(Sentence sentence) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         //System.err.println(sentence.getContent());
@@ -88,5 +123,37 @@ public class TranscriptionManager {
         
         return docTemplates;
         
+    }
+
+    public void sentenceProcess() {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        TextHandler textHandler = new TextHandler();
+        Map<String,String> sentences = textHandler.getSentences(getTeiDoc().getTeiDocument());
+        getTeiDoc().setSentences(sentences);
+    }
+
+    public List<String> getSentences() {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<String> ret = null;
+        if(null!=getTeiDoc().getSentences())
+            return new ArrayList<String> (getTeiDoc().getSentences().values());
+        else
+            return ret;
+    }
+    
+    public List<String> getSentenceIds() {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<String> ret = null;
+        if(null!=getTeiDoc().getSentences())
+            return new ArrayList<String> (getTeiDoc().getSentences().keySet());
+        else
+            return ret;
+    }
+
+    public void lemmatizationRun() {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Lemmatizer lemmatizer = new Lemmatizer();
+        lemmatizer.runLemmatization(getTeiDoc().getSentences());
+        System.err.println(lemmatizer.getOutBuilder());
     }
 }

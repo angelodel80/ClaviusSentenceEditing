@@ -8,8 +8,8 @@
     <ui:composition>
        <p:layout styleClass="layout">
 
-                <p:layoutUnit header="Letters" styleClass="layoutUnit" position="west" size="20%" resizable="true">
-                     <ui:include src="transcriptionViewTreeSentences.xhtml" />
+                <p:layoutUnit header="sentences" styleClass="layoutUnit" position="west" size="20%" resizable="true">
+                     <ui:include src="transcriptionViewTreeSents.xhtml" />
                 </p:layoutUnit>
 
                 <p:layoutUnit styleClass="layoutUnit" position="center">
@@ -29,7 +29,7 @@
                 </p:layoutUnit>
 
                 <p:layoutUnit header="Riferimenti" styleClass="layoutUnit" position="east" size="15%" resizable="true">
-                  
+                    <h:outputText value="#{transcriptionController.docid}" />
                 </p:layoutUnit>
 
             </p:layout>

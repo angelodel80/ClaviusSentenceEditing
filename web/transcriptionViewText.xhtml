@@ -7,6 +7,6 @@
     <p:separator style="height: 2em; width: 70%" />
 
     <h:form id="transcriptionsentenceform">
-        <p:inputTextarea autoResize="true" style="alignment-adjust: central; alignment-baseline: central; margin-left: 10%; margin-right: 10%; width: 80%" id="transcriptionsentencearea" cols="100" rows="3" value="#{transcriptionController.sentence}"  />
+        <h:outputText id="transcriptionsentencearea"  value="#{transcriptionController.sentence}" />
     </h:form>
 </ui:composition>

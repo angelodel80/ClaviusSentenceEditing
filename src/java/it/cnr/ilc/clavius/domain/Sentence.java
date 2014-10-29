@@ -15,7 +15,7 @@ public class Sentence {
     private String content;
     private String letterIdentificator;
 
-    public static final String DEF_CONTENT = "transcribe the sentence above....";
+    public static final String DEF_CONTENT = "Extract sentences..";
 
     public Sentence() {
     this.identificator = "s_01";

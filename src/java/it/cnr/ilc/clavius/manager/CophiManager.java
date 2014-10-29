@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author Angelo Del Grosso
  */
-public class CophiMenager {
+public class CophiManager {
     
     public List<String> getTokens(){
     String[] tokens = null;

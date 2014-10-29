@@ -1,52 +1,52 @@
 package it.cnr.ilc.clavius.utils;
 
-//import java.io.BufferedReader;
-//import java.io.FileNotFoundException;
-//import java.io.IOException;
-//import java.io.InputStreamReader;
-//import java.io.UnsupportedEncodingException;
-//import java.net.MalformedURLException;
-//import java.net.URISyntaxException;
-//import java.net.URL;
-//import java.util.Hashtable;
-//import java.util.Vector;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.util.Hashtable;
+import java.util.Vector;
 //
 //import org.apache.xmlrpc.XmlRpc;
 //import org.apache.xmlrpc.XmlRpcClient;
 //import org.apache.xmlrpc.XmlRpcException;
-//import org.jdom2.Document;
-//import org.jdom2.output.Format;
-//import org.jdom2.output.XMLOutputter;
+import org.jdom2.Document;
+import org.jdom2.output.Format;
+import org.jdom2.output.XMLOutputter;
 //import org.xmldb.api.modules.XMLResource;
 //import org.xmldb.api.base.Collection;
 //import org.xmldb.api.base.XMLDBException;
 
 public class ExistManager {
 
-//	public static BufferedReader getReader(URL inUrl) throws IOException,
-//			UnsupportedEncodingException {
-//		return new BufferedReader(new InputStreamReader(inUrl.openStream(),
-//				"utf-8"));
-//	}
-//
-//	public static String FromRemoteFileToString(String HttpRemoteUrl)
-//			throws IllegalArgumentException, UnsupportedEncodingException,
-//			FileNotFoundException, IOException, URISyntaxException {
-//		StringBuilder stringBuilder = null;
-//		BufferedReader reader = null;
-//		String line = null;
-//
-//		reader = getReader(new URL(HttpRemoteUrl));
-//
-//		stringBuilder = new StringBuilder();
-//		while (null != (line = reader.readLine())) {
-//			stringBuilder.append(line);
-//		}
-//
-//		reader.close();
-//
-//		return stringBuilder.toString();
-//	}
+	public static BufferedReader getReader(URL inUrl) throws IOException,
+			UnsupportedEncodingException {
+		return new BufferedReader(new InputStreamReader(inUrl.openStream(),
+				"utf-8"));
+	}
+
+	public static String FromRemoteFileToString(String HttpRemoteUrl)
+			throws IllegalArgumentException, UnsupportedEncodingException,
+			FileNotFoundException, IOException, URISyntaxException {
+		StringBuilder stringBuilder = null;
+		BufferedReader reader = null;
+		String line = null;
+
+		reader = getReader(new URL(HttpRemoteUrl));
+
+		stringBuilder = new StringBuilder();
+		while (null != (line = reader.readLine())) {
+			stringBuilder.append(line);
+		}
+
+		reader.close();
+
+		return stringBuilder.toString();
+	}
 //
 //	public static String FromRemoteXMLRPCtoString(String uri, String path)
 //			throws MalformedURLException, XmlRpcException, IOException {

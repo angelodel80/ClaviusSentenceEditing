@@ -7,18 +7,16 @@
         <p:toolbar styleClass="translationToolbar" >
             <f:facet name="left">
 
-                <p:commandButton styleClass="translationToolbarButton" icon="ui-icon-trash" value="Rimuovi"
-                                 disabled=""
-
-                                 />
+                <p:commandButton styleClass="translationToolbarButton" icon="ui-icon-contact" value="EstraiSentences"
+                                 actionListener="#{transcriptionController.sentences()}" update=":sentencelist" />
+                 <p:commandButton styleClass="translationToolbarButton" icon="ui-icon-contact" value="AnalizzaSentences"
+                                 actionListener="#{transcriptionController.analyze()}" />
             </f:facet>
 
             <f:facet name="right">
 
                 <p:commandButton partialSubmit="true" process="@this :transcriptionsentenceform:transcriptionsentencearea" styleClass="translationToolbarButton" icon="ui-icon-document" value="Salva"
                                  actionListener="#{transcriptionController.save()}" update=":toolbarform :transcriptionsentenceform :teiform" />
-
-
             </f:facet>
         </p:toolbar>
     </h:form>

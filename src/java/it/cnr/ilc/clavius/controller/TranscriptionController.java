@@ -8,6 +8,7 @@ package it.cnr.ilc.clavius.controller;
 import it.cnr.ilc.clavius.domain.Sentence;
 import it.cnr.ilc.clavius.manager.TranscriptionManager;
 import java.io.Serializable;
+import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -24,6 +25,8 @@ import org.jdom2.output.XMLOutputter;
 public class TranscriptionController extends BaseController implements Serializable {
 
     private String template; // to be fixed
+    private String docid;
+    private String teiDoc;
 
     @Inject
     private transient Sentence sentence;
@@ -37,6 +40,10 @@ public class TranscriptionController extends BaseController implements Serializa
         } else {
             return Sentence.DEF_CONTENT;
         }
+    }
+    
+    public List<String> getSentences(){
+        return transcriptionManager.getSentenceIds();
     }
 
     public void setSentence(String sentence) {
@@ -72,9 +79,37 @@ public class TranscriptionController extends BaseController implements Serializa
         return this.sentence.getLetterIdentificator();
     }
 
+    public String getDocid() {
+        return docid;
+    }
+
+    public void setDocid(String docid) {
+        this.docid = docid;
+    }
+
+    public String getTeiDoc() throws Exception{
+        Document doc = transcriptionManager.getDoc(getDocid());
+        XMLOutputter xop = new XMLOutputter(Format.getPrettyFormat());
+        teiDoc = xop.outputString(doc);
+        return teiDoc;
+    }
+
+    public void setTeiDoc(String teiDoc) {
+        this.teiDoc = teiDoc;
+    }
+
     public void save() {
         //System.out.println("Sentence: " + sentence.getIdentificator());
         //System.err.println("template: " + template);
         transcriptionManager.save(sentence);
+    }
+    public void sentences(){
+        System.err.println("in sentences...");
+        transcriptionManager.sentenceProcess();
+    }
+    
+    public void analyze(){
+        System.err.println("in analyze...");
+        transcriptionManager.lemmatizationRun();
     }
 }
