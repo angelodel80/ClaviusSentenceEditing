@@ -8,16 +8,24 @@ package it.cnr.ilc.clavius.manager.action;
 import ilc.cnr.it.clavius.ClaviusMain;
 import ilc.cnr.it.clavius.HunposTagger;
 import ilc.cnr.it.clavius.constants.HandleConstants;
+import ilc.cnr.it.clavius.lemmata.ParseToken;
+import ilc.cnr.it.clavius.utils.ClaviusUtils;
+import ilc.cnr.it.clavius.utils.SentencesHandler;
+import ilc.cnr.it.clavius.utils.TextUtils;
+import java.io.IOException;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import org.jdom2.Document;
+import org.jdom2.JDOMException;
 
 /**
  *
  * @author Angelo Del Grosso
  */
 final public class Lemmatizer {
-    StringBuilder outBuilder  = null; //FIXME!
+
+    StringBuilder outBuilder = null; //FIXME!
 
     public StringBuilder getOutBuilder() {
         return outBuilder;
@@ -26,11 +34,12 @@ final public class Lemmatizer {
     public void setOutBuilder(StringBuilder outBuilder) {
         this.outBuilder = outBuilder;
     }
+
     public Lemmatizer() {
-       outBuilder = new StringBuilder(); //FIXME!!!
+        outBuilder = new StringBuilder(); //FIXME!!!
     }
 
-    public  void runLemmatization(Map<String, String> sentences) {
+    public void runLemmatization(Map<String, String> sentences, String letter) {
         if (null != sentences) {
             ClaviusMain lemmatizationRun = new ClaviusMain();
             Object[] sents = sentences.values().toArray();
@@ -49,12 +58,12 @@ final public class Lemmatizer {
                 Matcher m = null;
                 StringBuffer tmpBuffer = new StringBuffer();
 
-		//System.out.println(msgTagged);
+                //System.out.println(msgTagged);
                 //hunPos.printPath();
                 //System.err.println("in process:" + msgTagged);
                 String[] lines = msgTagged.split("\n");
                 //lemmatizationRun.outBuilder.append(getSentName() + "\n");
-               
+
                 outBuilder.append(lemmatizationRun.getSentName() + "\n");
 
                 /* for due to manage the cts sub references*/
@@ -84,6 +93,33 @@ final public class Lemmatizer {
 
                 outBuilder.append("\n");
             }
+            
+            // ATENZIONE SISTEMARE LA SCRITTURA/LETTURA DEI FILE!
+            HandleConstants.setLetterRif(letter);
+            HandleConstants.setWorkDir("C:/tmp/Clavius/integrazioneWebApp/"+letter+"/");
+            HandleConstants.setTeiFile(letter+"-transcription.xml");
+            HandleConstants.setTaggedFile(HandleConstants.getWorkDir()+letter+"-tagged.txt");
+            HandleConstants.setTabFileAnalyzed(HandleConstants.getWorkDir()+letter+"-tokLemma.txt");
+            HandleConstants.setLetterAnalyzed("/Letter"+letter+"sent_analized");
+            HandleConstants.setFullTextFile(HandleConstants.getWorkDir()+letter+"-fullText.txt");
+           // HandleConstants.setLetterAnalyzed(letter);
+            
+            HelperIO.writeOut(this.getOutBuilder(), HandleConstants.getTaggedFile()); //FIXME!!
+            ParseToken.main(new String[]{HandleConstants.getTaggedFile(), HandleConstants.getTabFileAnalyzed()});
+            try {
+                Document xmlSentences = TextUtils.TabToXml(HandleConstants.getTabFileAnalyzed(), true);
+                ClaviusUtils.makeSentenceXML(xmlSentences);
+                // TODO build XML for integration purposes (Tokens and Linguistical_Analysis)
+                ClaviusUtils.makeIntegrationXMLforAnalysis(xmlSentences);
+                SentencesHandler.main(new String[]{HandleConstants.getWorkDir(), HandleConstants.getLetterRif()});
+            } catch (JDOMException e) {
+                e.getMessage();
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            
+            lemmatizationRun = null;
         }
     }
 }

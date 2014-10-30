@@ -1,0 +1,23 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:form id="proofreadertoolbarform">
+        <p:toolbar styleClass="translationToolbar" >
+            <f:facet name="left">
+
+                <p:commandButton styleClass="translationToolbarButton" icon="ui-icon-contact" value="EstraiSentences"
+                                 actionListener="#{transcriptionController.sentences()}" update=":proofreadersentencelist" />
+                 <p:commandButton styleClass="translationToolbarButton" icon="ui-icon-contact" value="AnalizzaSentences"
+                                 actionListener="#{transcriptionController.analyze()}" />
+            </f:facet>
+
+            <f:facet name="right">
+
+                <p:commandButton partialSubmit="true" process="@this :proofreadersentenceform:proofreadersentencearea" styleClass="translationToolbarButton" icon="ui-icon-document" value="Salva"
+                                 actionListener="#{transcriptionController.save()}" update=":proofreadertoolbarform :proofreadersentenceform :proofreaderform" />
+            </f:facet>
+        </p:toolbar>
+    </h:form>
+</ui:composition>

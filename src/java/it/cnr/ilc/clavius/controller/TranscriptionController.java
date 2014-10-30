@@ -8,10 +8,12 @@ package it.cnr.ilc.clavius.controller;
 import it.cnr.ilc.clavius.domain.Sentence;
 import it.cnr.ilc.clavius.manager.TranscriptionManager;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import org.apache.commons.lang3.StringUtils;
 import org.jdom2.Document;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
@@ -34,6 +36,9 @@ public class TranscriptionController extends BaseController implements Serializa
     @Inject
     private transient TranscriptionManager transcriptionManager;
 
+    @Inject
+    private transient ProofReaderController proofReaderController;
+    
     public String getSentence() {
         if (!"".equals(sentence.getContent()) && null != sentence.getContent()) {
             return sentence.getContent();
@@ -43,7 +48,13 @@ public class TranscriptionController extends BaseController implements Serializa
     }
     
     public List<String> getSentences(){
-        return transcriptionManager.getSentenceIds();
+        List<String> ret = new ArrayList<String>();
+        for (String sentence : transcriptionManager.getSentences()) {
+            ret.add(StringUtils.abbreviateMiddle(sentence, "...", 40));
+        }
+        
+        return ret;
+ 
     }
 
     public void setSentence(String sentence) {
@@ -110,6 +121,7 @@ public class TranscriptionController extends BaseController implements Serializa
     
     public void analyze(){
         System.err.println("in analyze...");
-        transcriptionManager.lemmatizationRun();
+        proofReaderController.setContent(transcriptionManager.lemmatizationRun(getDocid()));
+        proofReaderController.loadLetter();
     }
 }
