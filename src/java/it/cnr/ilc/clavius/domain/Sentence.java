@@ -15,11 +15,11 @@ public class Sentence {
     private String content;
     private String letterIdentificator;
 
-    public static final String DEF_CONTENT = "Extract sentences..";
+    public static final String DEF_CONTENT = "...";
 
     public Sentence() {
-    this.identificator = "s_01";
-    this.letterIdentificator = "136";
+    this.identificator = "";
+    this.letterIdentificator = "";
     }
     
     

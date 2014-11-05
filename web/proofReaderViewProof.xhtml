@@ -16,6 +16,7 @@
             <p:column headerText="Token" style="width:33%">
                 <h:outputText value="#{res.token}" style="float: left; font-weight: normal; font-style: italic; margin-left: 15px" />
             </p:column>
+
             <p:column headerText="Lemma" style="width:33%">
                 <p:cellEditor>
                     <f:facet name="output">
@@ -26,12 +27,23 @@
                     </f:facet>
                 </p:cellEditor>
             </p:column>
+
+
             <p:column headerText="Part of Speech" style="width:33%">
-                <p:selectOneMenu styleClass="menu" panelStyleClass="panel" rendered="#{res.posTag.size() > 1}">
-                    <f:selectItems value="#{res.posTag}" var="pos" itemLabel="#{pos}" itemValue="#{pos}" />
-                </p:selectOneMenu>
-                <h:outputText rendered="#{res.posTag.size() == 1}" value="#{res.posTag[0]}" />
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{res.posTag[0]}" />
+                    </f:facet>
+                    <f:facet name="input">
+                        <p:selectOneMenu styleClass="menu" panelStyleClass="panel" rendered="#{res.posTag.size() > 1}">
+                            <f:selectItems value="#{res.posTag}" var="pos" itemLabel="#{pos}" itemValue="#{pos}" />
+                    </f:facet>
+                    </p:selectOneMenu>
+
+                </p:cellEditor>
             </p:column>
+
+
             <p:column headerText="Person" style="width:33%">
                 <p:selectOneMenu styleClass="menu" panelStyleClass="panel" rendered="#{res.posTag.size() > 1}">
                     <f:selectItems value="#{res.person}" var="person" itemLabel="#{person}" itemValue="#{person}" />

@@ -10,13 +10,12 @@
                 <p:commandButton styleClass="translationToolbarButton" icon="ui-icon-contact" value="EstraiSentences"
                                  actionListener="#{transcriptionController.sentences()}" update=":proofreadersentencelist" />
                  <p:commandButton styleClass="translationToolbarButton" icon="ui-icon-contact" value="AnalizzaSentences"
-                                 actionListener="#{transcriptionController.analyze()}" />
+                                  actionListener="#{transcriptionController.analyze()}" />
             </f:facet>
 
             <f:facet name="right">
 
-                <p:commandButton partialSubmit="true" process="@this :proofreadersentenceform:proofreadersentencearea" styleClass="translationToolbarButton" icon="ui-icon-document" value="Salva"
-                                 actionListener="#{transcriptionController.save()}" update=":proofreadertoolbarform :proofreadersentenceform :proofreaderform" />
+                <p:commandButton icon="ui-icon-button" value="salva" />
             </f:facet>
         </p:toolbar>
     </h:form>

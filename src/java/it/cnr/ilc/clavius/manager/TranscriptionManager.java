@@ -76,6 +76,8 @@ public class TranscriptionManager {
 
     public Document getDoc(String ResourceIdentificator) throws Exception {
 
+        //Controllare se il file esiste già! in caso contrario si legge da Exist!
+        
         String TeiString = ExistManager.FromRemoteFileToString(
                 BASE_URL.concat(ResourceIdentificator).concat("/").concat(ResourceIdentificator).concat(DOC_SUFFIX));
         teiDoc.setTeiDocument(builder.build(new StringReader(TeiString)));

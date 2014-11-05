@@ -47,6 +47,14 @@ public class TranscriptionController extends BaseController implements Serializa
         }
     }
     
+    public void init() throws Exception{
+        System.err.println("INIT..." + getDocid());
+        getTeiDoc();
+        sentences();
+        proofReaderController.setDocumentTei(transcriptionManager.getTeiDoc());
+        
+    }
+    
     public List<String> getSentences(){
         List<String> ret = new ArrayList<String>();
         for (String sentence : transcriptionManager.getSentences()) {

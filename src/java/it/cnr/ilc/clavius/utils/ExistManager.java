@@ -10,16 +10,16 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Hashtable;
 import java.util.Vector;
-//
-//import org.apache.xmlrpc.XmlRpc;
-//import org.apache.xmlrpc.XmlRpcClient;
-//import org.apache.xmlrpc.XmlRpcException;
+
+import org.apache.xmlrpc.XmlRpc;
+import org.apache.xmlrpc.XmlRpcClient;
+import org.apache.xmlrpc.XmlRpcException;
 import org.jdom2.Document;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
-//import org.xmldb.api.modules.XMLResource;
-//import org.xmldb.api.base.Collection;
-//import org.xmldb.api.base.XMLDBException;
+import org.xmldb.api.modules.XMLResource;
+import org.xmldb.api.base.Collection;
+import org.xmldb.api.base.XMLDBException;
 
 public class ExistManager {
 
@@ -65,37 +65,37 @@ public class ExistManager {
 //		return xml;
 //	}
 //	
-//	public static boolean save(ExistConnection connection, Document xml, String context){
-//		boolean ret = false;
-//		Collection accessPoint = connection.getConnectionAccessPoint();
-//		XMLResource xmlFile = null;
-//		try {
-//			xmlFile = (XMLResource)accessPoint.createResource(context+"-Modify.xml", "XMLResource");
-//		} catch (XMLDBException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		XMLOutputter xmlOutput = new XMLOutputter();
-//		xmlOutput.setFormat(Format.getPrettyFormat());
-//		try {
-//			xmlFile.setContent(new XMLOutputter().outputString(xml));
-//		} catch (XMLDBException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		try {
-//			accessPoint.storeResource(xmlFile);
-//		} catch (XMLDBException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		try {
-//			accessPoint.close();
-//		} catch (XMLDBException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		return ret;
-//	}
+	public static boolean save(ExistConnection connection, Document xml, String context){
+		boolean ret = false;
+		Collection accessPoint = connection.getConnectionAccessPoint();
+		XMLResource xmlFile = null;
+		try {
+			xmlFile = (XMLResource)accessPoint.createResource(context+"-Modify.xml", "XMLResource");
+		} catch (XMLDBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		XMLOutputter xmlOutput = new XMLOutputter();
+		xmlOutput.setFormat(Format.getPrettyFormat());
+		try {
+			xmlFile.setContent(new XMLOutputter().outputString(xml));
+		} catch (XMLDBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			accessPoint.storeResource(xmlFile);
+		} catch (XMLDBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			accessPoint.close();
+		} catch (XMLDBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return ret;
+	}
 
 }

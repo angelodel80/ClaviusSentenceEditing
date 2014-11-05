@@ -8,6 +8,7 @@ package it.cnr.ilc.clavius.controller;
 import ilc.cnr.it.clavius.constants.HandleConstants;
 import it.cnr.ilc.clavius.domain.HierarchicalTeiDocument;
 import it.cnr.ilc.clavius.domain.PosTaggedToken;
+import it.cnr.ilc.clavius.domain.Sentence;
 import it.cnr.ilc.clavius.manager.ProofReaderManager;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -40,6 +41,9 @@ public class ProofReaderController extends BaseController implements Serializabl
 
     private String content = "PLUTO";
     private HierarchicalTeiDocument documentTei;
+    
+    @Inject
+    private transient Sentence sentence; 
 
     @Inject
     private transient ProofReaderManager proofReaderManager;
@@ -60,8 +64,6 @@ public class ProofReaderController extends BaseController implements Serializabl
         this.documentTei = documentTei;
     }
 
-    private static final long serialVersionUID = 7965455427888195917L;
-
     private boolean buttonDisabled = false;
     private transient String translatedString;
     private String currSentence;
@@ -70,7 +72,7 @@ public class ProofReaderController extends BaseController implements Serializabl
     private Integer currSentenceNumber;
     private Integer currLetterSize;
     private String countsentence;
-    private static List<PosTaggedToken> res = new ArrayList<PosTaggedToken>();
+    private List<PosTaggedToken> res = new ArrayList<PosTaggedToken>();
     private TreeNode root;
     private String[] posTagsList = {"n", "v", "t", "a", "d", "c", "r", "p", "m", "i", "e", "u", "-"};
     private String[] personList = {"1", "2", "3", "-"};
@@ -220,6 +222,9 @@ public class ProofReaderController extends BaseController implements Serializabl
         // "Cell Changed", "Old: " + oldValue + ", New:" + newValue);
         // FacesContext.getCurrentInstance().addMessage(null, msg);
         // }
+    
+        System.err.println("cellEdit..");
+    
     }
 
     public boolean getButtonDisabled() {
@@ -245,13 +250,13 @@ public class ProofReaderController extends BaseController implements Serializabl
     private void loadSentence(int sentNum) {
         String token, lemma, morpho, sentence = "";
         res.clear();
-        InputStream currLetterStream = null;
-        SAXBuilder builder = new SAXBuilder();
+      //  InputStream currLetterStream = null;
+      //  SAXBuilder builder = new SAXBuilder();
 
         //getClass().getClassLoader().getResourceAsStream("147.xml");
         try {
-            currLetterStream = new FileInputStream(HandleConstants.getWorkDir() + "Letter" + HandleConstants.getLetterRif() + "_anOUT.xml");
-            Document document = (Document) builder.build(currLetterStream);
+       //     currLetterStream = new FileInputStream(HandleConstants.getWorkDir() + "Letter" + HandleConstants.getLetterRif() + "_anOUT.xml");
+            Document document = getDocumentTei().getAnalysis();//(Document) builder.build(currLetterStream);
             Element rootNode = document.getRootElement();
             List sentenceList = rootNode.getChildren("sentence");
             Element sentenceNode = (Element) sentenceList.get(sentNum);
@@ -266,11 +271,9 @@ public class ProofReaderController extends BaseController implements Serializabl
                 System.out.println("SENTENZA: " + sentence);
             }
             setCurrSentence(sentence);
-        } catch (IOException io) {
-            System.out.println(io.getMessage());
-        } catch (JDOMException jdomex) {
-            System.out.println(jdomex.getMessage());
-        }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } 
     }
 
     public void loadLetter() {
@@ -284,6 +287,7 @@ public class ProofReaderController extends BaseController implements Serializabl
         try {
             currLetterStream = new FileInputStream(HandleConstants.getWorkDir() + "Letter" + HandleConstants.getLetterRif() + "_anOUT.xml");
             Document document = (Document) builder.build(currLetterStream);
+            getDocumentTei().setAnalysis(document);
             Element rootNode = document.getRootElement();
             List sentenceList = rootNode.getChildren("sentence");
             setCurrLetterSize(sentenceList.size());
@@ -322,7 +326,7 @@ public class ProofReaderController extends BaseController implements Serializabl
         tk.setLemma(lemma);
         tk.setPosTag(pos);
         for (int i = 0; i < posTagsList.length; i++) {
-            if (!posTagsList[i].equals(pos)) {
+            if (!posTagsList[i].equals(pos)) { //??
                 tk.setPosTag(posTagsList[i]);
             }
         }

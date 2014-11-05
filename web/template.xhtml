@@ -12,9 +12,9 @@
         <h:outputStylesheet name="./css/override.css"/>
         <h:outputStylesheet name="./css/editor.css"/>
         <h:outputStylesheet name="./css/sh.css" />
-        
+
         <h:outputScript name="./js/sh.js" target="body"/>
-        
+
         <style type="text/css">
 
         </style>
@@ -25,6 +25,11 @@
 
         <p:growl id="growl" showDetail="true"/>
 
+        <p:dialog widgetVar="loadingDialog" styleClass="loadingDialog" modal="true" closable="false" resizable="false" >
+            <p:outputLabel styleClass="loadingLabel" value="Caricamento"/>
+            <p:graphicImage styleClass="loadingImage" name="image/waiting.gif"/>
+        </p:dialog>
+        
         <div id="top">
             <h:form>                
                 <p:toolbar styleClass="topToolbar">
@@ -44,7 +49,7 @@
                         </p:commandLink>
                     </f:facet>
 
-                   <f:facet name="right">
+                    <f:facet name="right">
                         <p:commandLink title="Informazioni" >
                             <p:graphicImage styleClass="topToolbarButton" value="/resources/image/info.png"/>
                         </p:commandLink>

@@ -20,6 +20,15 @@ public class HierarchicalTeiDocument {
     Map<String, String> sentences;
     Element header;
     Element text;
+    Document analysis;
+
+    public Document getAnalysis() {
+        return analysis;
+    }
+
+    public void setAnalysis(Document analysis) {
+        this.analysis = analysis;
+    }
 
     public Element getHeader() {
         return header;
