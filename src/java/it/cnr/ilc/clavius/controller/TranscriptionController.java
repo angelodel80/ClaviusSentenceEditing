@@ -14,6 +14,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import org.apache.commons.lang3.StringUtils;
+
 import org.jdom2.Document;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
@@ -29,7 +30,9 @@ public class TranscriptionController extends BaseController implements Serializa
     private String template; // to be fixed
     private String docid;
     private String teiDoc;
-
+    
+    private boolean salvable = false;
+        
     @Inject
     private transient Sentence sentence;
 
@@ -49,10 +52,24 @@ public class TranscriptionController extends BaseController implements Serializa
     
     public void init() throws Exception{
         System.err.println("INIT..." + getDocid());
+        salvable=false;
         getTeiDoc();
         sentences();
         proofReaderController.setDocumentTei(transcriptionManager.getTeiDoc());
+        proofReaderController.setCurrLetter(getDocid());
+        proofReaderController.setResults();
         
+        
+    }
+    
+    public List<String> getFullSents(){
+        List<String> ret = new ArrayList<String>();
+        for (String sentence : transcriptionManager.getSentences()) {
+            ret.add(sentence);
+        }
+        
+        return ret;
+ 
     }
     
     public List<String> getSentences(){
@@ -117,10 +134,14 @@ public class TranscriptionController extends BaseController implements Serializa
         this.teiDoc = teiDoc;
     }
 
+    public boolean isSalvable(){
+        return salvable;
+    }
+    
     public void save() {
         //System.out.println("Sentence: " + sentence.getIdentificator());
-        //System.err.println("template: " + template);
-        transcriptionManager.save(sentence);
+        System.err.println("salva.. transcription");
+        transcriptionManager.save();
     }
     public void sentences(){
         System.err.println("in sentences...");
@@ -131,5 +152,6 @@ public class TranscriptionController extends BaseController implements Serializa
         System.err.println("in analyze...");
         proofReaderController.setContent(transcriptionManager.lemmatizationRun(getDocid()));
         proofReaderController.loadLetter();
+        salvable = true;
     }
 }

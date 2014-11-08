@@ -10,6 +10,7 @@ import it.cnr.ilc.clavius.domain.HierarchicalTeiDocument;
 import it.cnr.ilc.clavius.domain.PosTaggedToken;
 import it.cnr.ilc.clavius.domain.Sentence;
 import it.cnr.ilc.clavius.manager.ProofReaderManager;
+import it.cnr.ilc.clavius.manager.action.HelperIO;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,10 +25,13 @@ import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.event.ValueChangeEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
+import org.apache.commons.lang3.StringUtils;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
+import org.jdom2.output.Format;
+import org.jdom2.output.XMLOutputter;
 import org.primefaces.event.CellEditEvent;
 import org.primefaces.model.TreeNode;
 
@@ -41,9 +45,9 @@ public class ProofReaderController extends BaseController implements Serializabl
 
     private String content = "PLUTO";
     private HierarchicalTeiDocument documentTei;
-    
+
     @Inject
-    private transient Sentence sentence; 
+    private transient Sentence sentence;
 
     @Inject
     private transient ProofReaderManager proofReaderManager;
@@ -87,6 +91,8 @@ public class ProofReaderController extends BaseController implements Serializabl
 
     public void setResults() {
         res.clear();
+        setCountsentence(" ");
+        setCurrSentence(" ");
     }
 
     public void letterChanging(ValueChangeEvent e) {
@@ -222,10 +228,12 @@ public class ProofReaderController extends BaseController implements Serializabl
         // "Cell Changed", "Old: " + oldValue + ", New:" + newValue);
         // FacesContext.getCurrentInstance().addMessage(null, msg);
         // }
-    
+
         System.err.println("cellEdit..");
-    
+
     }
+    
+    //public void onPageChange(Event )
 
     public boolean getButtonDisabled() {
         return buttonDisabled;
@@ -248,14 +256,15 @@ public class ProofReaderController extends BaseController implements Serializabl
     }
 
     private void loadSentence(int sentNum) {
+        setCurrSentenceNumber(sentNum);
         String token, lemma, morpho, sentence = "";
         res.clear();
       //  InputStream currLetterStream = null;
-      //  SAXBuilder builder = new SAXBuilder();
+        //  SAXBuilder builder = new SAXBuilder();
 
         //getClass().getClassLoader().getResourceAsStream("147.xml");
         try {
-       //     currLetterStream = new FileInputStream(HandleConstants.getWorkDir() + "Letter" + HandleConstants.getLetterRif() + "_anOUT.xml");
+            //     currLetterStream = new FileInputStream(HandleConstants.getWorkDir() + "Letter" + HandleConstants.getLetterRif() + "_anOUT.xml");
             Document document = getDocumentTei().getAnalysis();//(Document) builder.build(currLetterStream);
             Element rootNode = document.getRootElement();
             List sentenceList = rootNode.getChildren("sentence");
@@ -273,7 +282,7 @@ public class ProofReaderController extends BaseController implements Serializabl
             setCurrSentence(sentence);
         } catch (Exception e) {
             System.out.println(e.getMessage());
-        } 
+        }
     }
 
     public void loadLetter() {
@@ -381,6 +390,42 @@ public class ProofReaderController extends BaseController implements Serializabl
         res.add(tk);
     }
 
+    public void saveProof() {
+        System.err.println("salva proofreader.." + getCurrSentenceNumber());
+
+        Document analysis = this.getDocumentTei().getAnalysis();
+
+        Element rootNode = analysis.getRootElement();
+        List<Element> sentenceList = rootNode.getChildren("sentence");
+        Element sentenceNode = sentenceList.get(getCurrSentenceNumber().intValue());
+        List<Element> tokenList = sentenceNode.getChildren("token");
+        
+        for (int i = 0; i < tokenList.size(); i++) {
+                Element tokenNode = (Element) tokenList.get(i);
+                PosTaggedToken tk = res.get(i);
+                tokenNode.setAttribute("lemma", tk.getLemma());
+                tokenNode.setAttribute("morphoCode", 
+                        tk.getPosTag().get(0)
+                        .concat(tk.getPerson().get(0))
+                        .concat(tk.getNumber().get(0))
+                        .concat(tk.getTense().get(0))
+                        .concat(tk.getMood().get(0))
+                        .concat(tk.getVoice().get(0))
+                        .concat(tk.getGender().get(0))
+                        .concat(tk.getCases().get(0))
+                        .concat(tk.getDegree().get(0))
+                    
+                );
+            }
+
+        XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
+        String newAnalysis = outputter.outputString(analysis);
+        StringBuilder sb = new StringBuilder(newAnalysis);
+
+        HelperIO.writeOut(sb, HandleConstants.getWorkDir().concat(HandleConstants.getLetterRif()).concat("-linguistic-dev.xml"));
+
+    }
+
     public Integer getCurrSentenceSize() {
         return currSentenceSize;
     }
@@ -443,6 +488,15 @@ public class ProofReaderController extends BaseController implements Serializabl
 
     public void setDis(boolean dis) {
         this.dis = dis;
+    }
+    
+    public List<String> getSentences(){
+         List<String> ret = new ArrayList<String>();
+        for (String sent : getDocumentTei().getSentences().values()) {
+            ret.add(StringUtils.abbreviateMiddle(sent, "...", 40));
+        }
+        
+        return ret;
     }
 
 }

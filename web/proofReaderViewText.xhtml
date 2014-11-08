@@ -5,47 +5,32 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
     
     <h:form id="selectedResourceView">
-        <p:panel id="pnl" styleClass="dataColumn" header="Analisi del latino" toggleable="true" collapsed="false" widgetVar="panel">
+        <p:panel id="pnl" styleClass="dataColumn" header="Latin Analysis" toggleable="true" collapsed="false" widgetVar="panel">
             <p:panelGrid id="resource" style="width: 100%">
                 <p:row>
                     <p:column style="border: none;">
+                        
                         <h:outputLabel for="inplaceResourceName">
-                            <strong>Frase corrente</strong>
+                            <strong>sentence</strong>
                         </h:outputLabel>
                         <h:outputLabel id="countSentence" value="#{proofReaderController.countsentence}">
                         </h:outputLabel>
-                        <p:commandButton actionListener="#{proofReaderController.prevSentence()}" id="prev_sent" update=":proofreaderform, sentenceArea, countSentence, formbox:box" icon="ui-icon-circle-arrow-w" title="Icon Only" />
-                        <p:commandButton actionListener="#{proofReaderController.nextSentence()}" id="next_sent" update=":proofreaderform, sentenceArea, countSentence, formbox:box" icon="ui-icon-circle-arrow-e" title="Icon Only" />
+                        <br />
+                        <p:commandButton onstart="PF('loadingDialog').show()" oncomplete="PF('loadingDialog').hide()" actionListener="#{proofReaderController.prevSentence()}" id="prev_sent" update=":proofreaderform, sentenceArea, countSentence" icon="ui-icon-circle-arrow-w" title="Icon Only" />
+                        <p:commandButton onstart="PF('loadingDialog').show()" oncomplete="PF('loadingDialog').hide()" actionListener="#{proofReaderController.nextSentence()}" id="next_sent" update=":proofreaderform, sentenceArea, countSentence" icon="ui-icon-circle-arrow-e" title="Icon Only" />
+                    
                     </p:column>
+                    
                     <p:column style="border: none;">
                         <br />
                         <p:inputTextarea id="sentenceArea" rows="4" cols="100" value="#{proofReaderController.currSentence}" />
                     </p:column>
                     <p:column style="border: none;">
-                        <p:selectOneMenu id="console" valueChangeListener="#{proofReaderController.letterChanging}">
-                            <p:ajax listener="#{proofReaderController.loadLetter()}" update=":proofreaderform, sentenceArea, countSentence, console" />
-                            <f:selectItem itemLabel="Scegli Lett." itemValue="" itemDisabled="#{proofReaderController.dis}"/>
-                            <f:selectItem itemLabel="Lett. 136" itemValue="136" itemDisabled="true" />
-                            <f:selectItem itemLabel="Lett. 139" itemValue="139" itemDisabled="true" />
-                            <f:selectItem itemLabel="Lett. 147" itemValue="147" />
-                            <f:selectItem itemLabel="Lett. 149" itemValue="149" itemDisabled="true" />
-                            <f:selectItem itemLabel="Lett. 153" itemValue="153" itemDisabled="true" />
-                            <f:selectItem itemLabel="Lett. 204" itemValue="204" itemDisabled="true" />
-                            <f:selectItem itemLabel="Lett. 267" itemValue="267" itemDisabled="true" />
-                        </p:selectOneMenu>
+                        <div>Letter</div>
+                        <h:outputText value="#{proofReaderController.currLetter}" style="font-weight: bold" />
                     </p:column>
                     <p:column style="border: none;">
-                        <p:graphicImage value="images/iconPen.png" width="70" height="95" />
-
-
-
-                        <h:form id="formbox">
-                            <p:growl id="msg" />
-                            <p:selectBooleanCheckbox id="box" value="#{proofReaderController.value2}">
-                                <p:ajax update="msg" listener="#{proofReaderController.addMessage}" />
-                            </p:selectBooleanCheckbox>
-                        </h:form>
-
+                        
                     </p:column>
                 </p:row>
             </p:panelGrid>

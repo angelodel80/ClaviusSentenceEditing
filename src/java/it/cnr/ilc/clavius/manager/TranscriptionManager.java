@@ -37,7 +37,7 @@ import org.jdom2.input.SAXBuilder;
  */
 public class TranscriptionManager {
 
-    public static String BASE_URL = "http://claviusontheweb.it:8080/exist/rest//db/clavius/documents/";
+    public static String BASE_URL = "http://claviusontheweb.it/exist/rest//db/clavius/documents/";
     public static String DOC_SUFFIX = "-transcription.xml";
 
     private Document docTemplate;
@@ -74,18 +74,17 @@ public class TranscriptionManager {
         return Sentence.DEF_CONTENT;
     }
 
-    public Document getDoc(String ResourceIdentificator) throws Exception {
+    public Document getDoc(String resourceIdentificator) throws Exception {
 
         //Controllare se il file esiste già! in caso contrario si legge da Exist!
-        
         String TeiString = ExistManager.FromRemoteFileToString(
-                BASE_URL.concat(ResourceIdentificator).concat("/").concat(ResourceIdentificator).concat(DOC_SUFFIX));
+                BASE_URL.concat(resourceIdentificator).concat("/").concat(resourceIdentificator).concat(DOC_SUFFIX));
         teiDoc.setTeiDocument(builder.build(new StringReader(TeiString)));
-       
-        HandleConstants.setWorkDir("C:/tmp/Clavius/integrazioneWebApp/" + ResourceIdentificator + "/");
-        HandleConstants.setTeiFile(ResourceIdentificator.concat(DOC_SUFFIX));
+
+        HandleConstants.setWorkDir("/home/clavius/wapp/" + resourceIdentificator + "/");
+        HandleConstants.setTeiFile(resourceIdentificator.concat(DOC_SUFFIX));
         HelperIO.fromDomToFile(teiDoc.getTeiDocument(), HandleConstants.getWorkDir() + HandleConstants.getTeiFile());
-        
+
         Element rootText = getTeiDoc().getText().clone();
         return new Document(rootText);
     }
@@ -98,12 +97,30 @@ public class TranscriptionManager {
         this.teiDoc = teiDoc;
     }
 
-    public void save(Sentence sentence) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        //System.err.println(sentence.getContent());
-        //SAXBuilder builder = new SAXBuilder();
-        it.cnr.ilc.clavius.utils.Sentence sent = new it.cnr.ilc.clavius.utils.Sentence(sentence.getContent(), sentence.getIdentificator());
-        DocumentHandler.insertSentence(sent, docTemplate);
+//    public void save(Sentence sentence) {
+//        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//        //System.err.println(sentence.getContent());
+//        //SAXBuilder builder = new SAXBuilder();
+//        it.cnr.ilc.clavius.utils.Sentence sent = new it.cnr.ilc.clavius.utils.Sentence(sentence.getContent(), sentence.getIdentificator());
+//        DocumentHandler.insertSentence(sent, docTemplate);
+//    }
+    public void save() {
+        String src = HandleConstants.getWorkDir().concat("Letter").concat(HandleConstants.getLetterRif()).concat("_tokens.xml");
+        String trg = HandleConstants.getWorkDir().concat(HandleConstants.getLetterRif()).concat("-tok-dev.xml");
+        System.err.println(src);
+        System.err.println(trg);
+        HelperIO.fromFileToFile(src, trg);
+        //HelperIO.fromFileToFile(HandleConstants.getFullTextFile(), HandleConstants.getWorkDir().concat(HandleConstants.getLetterRif().concat(".txt")));
+        StringBuilder sBuilder = null;
+        sBuilder = new StringBuilder();
+        Object[] sents = getTeiDoc().getSentences().values().toArray();
+        for (Object sent : sents) {
+            String s = (String) sent;
+            sBuilder.append(s.trim() + "\n");
+            //System.out.print(s.trim()+"\n");
+        }
+        
+        HelperIO.writeOut(sBuilder, HandleConstants.getWorkDir().concat(HandleConstants.getLetterRif().concat("-dev.txt")));
     }
 
     private Map<String, Document> initTemplates() {
@@ -151,7 +168,7 @@ public class TranscriptionManager {
 
     public List<String> getSentenceIds() {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-       List<String> ret = new ArrayList<String>();
+        List<String> ret = new ArrayList<String>();
         if (null != getTeiDoc().getSentences()) {
             return new ArrayList<String>(getTeiDoc().getSentences().keySet());
         } else {

@@ -96,7 +96,7 @@ final public class Lemmatizer {
             
             // ATENZIONE SISTEMARE LA SCRITTURA/LETTURA DEI FILE!
             HandleConstants.setLetterRif(letter);
-            HandleConstants.setWorkDir("C:/tmp/Clavius/integrazioneWebApp/"+letter+"/");
+            HandleConstants.setWorkDir("/home/clavius/wapp/"+letter+"/");
             HandleConstants.setTeiFile(letter+"-transcription.xml");
             HandleConstants.setTaggedFile(HandleConstants.getWorkDir()+letter+"-tagged.txt");
             HandleConstants.setTabFileAnalyzed(HandleConstants.getWorkDir()+letter+"-tokLemma.txt");

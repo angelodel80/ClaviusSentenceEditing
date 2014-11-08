@@ -4,10 +4,14 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <p:separator style="height: 1em; width: 70%" />
+    
 
     <h:form id="teiform">
-         <h:outputScript name="./js/sh.js" />
-         <pre class="brush:xml"><h:outputText value="#{transcriptionController.teiDoc}"  /></pre>
+         <!-- h:outputScript name="./js/sh.js" / -->
+         <!--pre class="brush:xml"><h:outputText value="{transcriptionController.teiDoc}"  /></pre -->
+         <ui:repeat value="#{transcriptionController.fullSents}" var="fullsent">
+            <h:outputText  value="#{fullsent}" />
+            <p:separator style="height: 0.5em; width: 70%" />
+        </ui:repeat>
     </h:form>
 </ui:composition>

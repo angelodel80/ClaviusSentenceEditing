@@ -30,7 +30,7 @@
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
-                    <file>${file.reference.ClaviusLemmata.jar}</file>
+                    <file>${file.reference.ClaviusLemmata-20.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">

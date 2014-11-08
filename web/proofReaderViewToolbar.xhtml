@@ -7,15 +7,12 @@
         <p:toolbar styleClass="translationToolbar" >
             <f:facet name="left">
 
-                <p:commandButton styleClass="translationToolbarButton" icon="ui-icon-contact" value="EstraiSentences"
-                                 actionListener="#{transcriptionController.sentences()}" update=":proofreadersentencelist" />
-                 <p:commandButton styleClass="translationToolbarButton" icon="ui-icon-contact" value="AnalizzaSentences"
-                                  actionListener="#{transcriptionController.analyze()}" />
+                <p:commandButton onstart="PF('loadingDialog').show()" oncomplete="PF('loadingDialog').hide()" disabled="#{transcriptionController.salvable}" styleClass="translationToolbarButton" icon="ui-icon-contact" value="AnalizzaSentences"
+                                 actionListener="#{transcriptionController.analyze()}" update=":proofreaderform :selectedResourceView" />
             </f:facet>
 
             <f:facet name="right">
-
-                <p:commandButton icon="ui-icon-button" value="salva" />
+                <p:commandButton onstart="PF('loadingDialog').show()" oncomplete="PF('loadingDialog').hide()" disabled="#{not transcriptionController.salvable}" icon="ui-icon-button" value="salva" actionListener="#{proofReaderController.saveProof()}" />
             </f:facet>
         </p:toolbar>
     </h:form>
