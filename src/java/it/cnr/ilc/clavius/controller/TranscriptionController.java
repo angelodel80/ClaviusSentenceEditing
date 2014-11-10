@@ -7,6 +7,7 @@ package it.cnr.ilc.clavius.controller;
 
 import it.cnr.ilc.clavius.domain.Sentence;
 import it.cnr.ilc.clavius.manager.TranscriptionManager;
+import it.cnr.ilc.clavius.utils.ExistConnection;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +42,7 @@ public class TranscriptionController extends BaseController implements Serializa
 
     @Inject
     private transient ProofReaderController proofReaderController;
-    
+     
     public String getSentence() {
         if (!"".equals(sentence.getContent()) && null != sentence.getContent()) {
             return sentence.getContent();
@@ -142,6 +143,8 @@ public class TranscriptionController extends BaseController implements Serializa
         //System.out.println("Sentence: " + sentence.getIdentificator());
         System.err.println("salva.. transcription");
         transcriptionManager.save();
+       
+        
     }
     public void sentences(){
         System.err.println("in sentences...");

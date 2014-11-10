@@ -10,6 +10,6 @@ package it.cnr.ilc.clavius.manager;
  *
  * @author Angelo Del Grosso
  */
-public class ExistManager {
+public class ExistdbManager {
     
 }

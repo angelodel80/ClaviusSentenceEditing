@@ -96,13 +96,24 @@ final public class Lemmatizer {
             
             // ATENZIONE SISTEMARE LA SCRITTURA/LETTURA DEI FILE!
             HandleConstants.setLetterRif(letter);
-            HandleConstants.setWorkDir("/home/clavius/wapp/"+letter+"/");
+            
+            //linux
+           
+           //HandleConstants.setWorkDir("/home/clavius/wapp/"+letter+"/");
+          
+            //windows
+            HandleConstants.setWorkDir("C:/tmp/Clavius/integrazioneWebApp/"+letter+"/");
+           
+           // HandleConstants.setLetterAnalyzed(letter);
+            
+           
+            
+            
             HandleConstants.setTeiFile(letter+"-transcription.xml");
             HandleConstants.setTaggedFile(HandleConstants.getWorkDir()+letter+"-tagged.txt");
             HandleConstants.setTabFileAnalyzed(HandleConstants.getWorkDir()+letter+"-tokLemma.txt");
             HandleConstants.setLetterAnalyzed("/Letter"+letter+"sent_analized");
             HandleConstants.setFullTextFile(HandleConstants.getWorkDir()+letter+"-fullText.txt");
-           // HandleConstants.setLetterAnalyzed(letter);
             
             HelperIO.writeOut(this.getOutBuilder(), HandleConstants.getTaggedFile()); //FIXME!!
             ParseToken.main(new String[]{HandleConstants.getTaggedFile(), HandleConstants.getTabFileAnalyzed()});

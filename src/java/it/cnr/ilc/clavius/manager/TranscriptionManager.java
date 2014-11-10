@@ -13,7 +13,9 @@ import it.cnr.ilc.clavius.utils.ExistManager;
 import it.cnr.ilc.clavius.domain.Sentence;
 import it.cnr.ilc.clavius.manager.action.HelperIO;
 import it.cnr.ilc.clavius.manager.action.Lemmatizer;
-import it.cnr.ilc.clavius.utils.DocumentHandler;
+import it.cnr.ilc.clavius.utils.SystemHandler;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
@@ -30,6 +32,10 @@ import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
+import org.xmldb.api.DatabaseManager;
+import org.xmldb.api.base.Collection;
+import org.xmldb.api.base.Database;
+import org.xmldb.api.base.XMLDBException;
 
 /**
  *
@@ -37,7 +43,8 @@ import org.jdom2.input.SAXBuilder;
  */
 public class TranscriptionManager {
 
-    public static String BASE_URL = "http://claviusontheweb.it/exist/rest//db/clavius/documents/";
+    public static String BASE_URL = "http://claviusontheweb.it:8080/exist/rest//db/clavius/documents/";
+    public static String LOCAL_URL ="http://localhost:8080/exist/rest//db/clavius/documents/";
     public static String DOC_SUFFIX = "-transcription.xml";
 
     private Document docTemplate;
@@ -77,11 +84,31 @@ public class TranscriptionManager {
     public Document getDoc(String resourceIdentificator) throws Exception {
 
         //Controllare se il file esiste già! in caso contrario si legge da Exist!
-        String TeiString = ExistManager.FromRemoteFileToString(
-                BASE_URL.concat(resourceIdentificator).concat("/").concat(resourceIdentificator).concat(DOC_SUFFIX));
+        String TeiString = null;
+        try{
+         TeiString = ExistManager.FromRemoteFileToString(
+                BASE_URL.concat(resourceIdentificator).concat("/").concat(resourceIdentificator).concat(DOC_SUFFIX));   
+        }catch(FileNotFoundException fe){
+            System.err.println(fe.getMessage());
+            TeiString = ExistManager.FromRemoteFileToString(
+                LOCAL_URL.concat(resourceIdentificator).concat("/").concat(resourceIdentificator).concat(DOC_SUFFIX));   
+        }
+        
+        if(null==TeiString){
+            TeiString = "";
+        }
+        
         teiDoc.setTeiDocument(builder.build(new StringReader(TeiString)));
 
-        HandleConstants.setWorkDir("/home/clavius/wapp/" + resourceIdentificator + "/");
+        
+        //SERVER
+       // HandleConstants.setWorkDir("/home/clavius/wapp/" + resourceIdentificator + "/");
+       
+       
+        //WINDOWS
+         HandleConstants.setWorkDir("C:/tmp/Clavius/integrazioneWebApp/" + resourceIdentificator + "/");
+        
+        
         HandleConstants.setTeiFile(resourceIdentificator.concat(DOC_SUFFIX));
         HelperIO.fromDomToFile(teiDoc.getTeiDocument(), HandleConstants.getWorkDir() + HandleConstants.getTeiFile());
 
@@ -121,6 +148,13 @@ public class TranscriptionManager {
         }
         
         HelperIO.writeOut(sBuilder, HandleConstants.getWorkDir().concat(HandleConstants.getLetterRif().concat("-dev.txt")));
+        
+       //ExistConnection.main(new String[]{});
+       
+        //ExistManager.save(connection,new File(trg),HandleConstants.getLetterRif());
+        
+        System.err.println(SystemHandler.runProcess("letter"));
+        
     }
 
     private Map<String, Document> initTemplates() {

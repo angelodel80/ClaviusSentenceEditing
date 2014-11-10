@@ -318,6 +318,14 @@ public class ProofReaderController extends BaseController implements Serializabl
         } catch (JDOMException jdomex) {
             System.out.println(jdomex.getMessage());
         }
+        finally{
+            try{
+                currLetterStream.close();
+            } catch(IOException ioe){
+                System.out.println(ioe.getMessage());
+            }
+                
+        }
     }
 
     private void setMorphoElement(String token, String lemma, String morpho) {

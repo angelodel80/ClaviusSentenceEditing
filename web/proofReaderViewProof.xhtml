@@ -9,11 +9,13 @@
     <h:form id="proofreaderform">
         <p:dataTable style="width:95%; margin-left: 2%" id="talmudTable" widgetVar="dataTable" var="res" value="#{proofReaderController.results}" paginator="true" rows="15" paginatorTemplate=" {FirstPageLink} {PreviousPageLink} 
                      {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rendered="#{proofReaderController.results.size() != 0}" editable="true" editMode="cell">
-            <p:ajax event="page" onstart="PF('loadingDialog').show()" oncomplete="PF('loadingDialog').hide()" listener="" />
+            
             <f:facet name="header">  
                 Proofreading of the analyzed sentences
             </f:facet>
-            <p:ajax event="cellEdit" listener="#{proofReaderController.onCellEdit}" update="" />
+            
+            <p:ajax event="cellEdit" listener="#{proofReaderController.onCellEdit}" update=":proofreaderform" />
+            
             <p:column headerText="Token" style="width:33%">
                 <h:outputText value="#{res.token}" style="float: left; font-weight: normal; font-style: italic; margin-left: 15px" />
             </p:column>

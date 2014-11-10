@@ -7,13 +7,12 @@
         <p:toolbar styleClass="translationToolbar" >
             <f:facet name="left">
 
-                 <p:commandButton onstart="PF('loadingDialog').show()" oncomplete="PF('loadingDialog').hide()" disabled="#{transcriptionController.salvable}" styleClass="translationToolbarButton" icon="ui-icon-contact" value="AnalizzaSentences"
-                                  actionListener="#{transcriptionController.analyze()}" update=":toolbarform" />
+                <p:commandButton onstart="PF('loadingDialog').show()" oncomplete="PF('loadingDialog').hide()" disabled="#{transcriptionController.salvable}" styleClass="translationToolbarButton" icon="ui-icon-contact" value="AnalizzaSentences"
+                                 actionListener="#{transcriptionController.analyze()}" update=":toolbarform" />
             </f:facet>
 
             <f:facet name="right">
-
-                <p:commandButton onstart="PF('loadingDialog').show()" oncomplete="PF('loadingDialog').hide()" disabled="#{not transcriptionController.salvable}" styleClass="translationToolbarButton" icon="ui-icon-document" value="Salva"
+                 <p:commandButton disabled="#{not transcriptionController.salvable}" styleClass="translationToolbarButton" icon="ui-icon-document" value="Salva"
                                  actionListener="#{transcriptionController.save()}"  />
             </f:facet>
         </p:toolbar>

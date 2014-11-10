@@ -1,5 +1,7 @@
 package it.cnr.ilc.clavius.utils;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.jdom2.Document;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
@@ -14,11 +16,12 @@ public class ExistConnection {
 	private String context;
 
 	protected final String driver = "org.exist.xmldb.DatabaseImpl";
-	protected final String collection = "xmldb:exist://localhost:8080/exist/xmlrpc/db/claviusTemplate/";
+	protected final String collection = "xmldb:exist://claviusontheweb.it:8080/exist/xmlrpc/db/clavius/documents/";
 	private Collection connectionAccessPoint = null;
 
 	public ExistConnection() {
 		// TODO Auto-generated constructor stub
+            this.context="";
 	}
 
 	public ExistConnection(String context) {
@@ -26,6 +29,7 @@ public class ExistConnection {
 	}
 
 	public boolean connect() {
+            System.err.println(" in connection...");
 		boolean ret = false;
 
 		try {
@@ -33,10 +37,18 @@ public class ExistConnection {
 			Class<?> c = Class.forName(driver);
 			Database db = (Database) c.newInstance();
 			DatabaseManager.registerDatabase(db);
-			setConnectionAccessPoint(DatabaseManager.getCollection(collection,
-					"admin", "angelodel80"));
+                        System.err.println(collection.concat(context));
+			
+                        Collection coll = DatabaseManager.getCollection(collection.concat(context),
+					"admin", "claviusproject");
+                        
+                         System.err.println("subito dopo la coll..");
+                        
+                        setConnectionAccessPoint(coll);
+                       
+                        System.err.println("dopo la set... ");
 			ret = true;
-			// System.err.println(root.getName());
+			
 
 			// String[] resources = root.listResources();
 			// for(String res: resources){
@@ -45,25 +57,72 @@ public class ExistConnection {
 
 		} catch (XMLDBException eXML) {
 			eXML.printStackTrace();
-		} catch (ClassNotFoundException eRefl) {
+                         System.err.println(eXML.getMessage());
+                         System.err.println("eccezione EXIST dalla connection");
+		} catch (IncompatibleClassChangeError cce){
+                    System.err.println(cce.getMessage());
+			cce.printStackTrace();
+                         System.err.println("eccezione EXIST Class Change dalla connection");
+                }
+                
+                catch (ClassNotFoundException eRefl) {
 			// TODO Auto-generated catch block
+                     System.err.println(eRefl.getMessage());
 			eRefl.printStackTrace();
 		} catch (InstantiationException eInst) {
 			// TODO Auto-generated catch block
+                    System.err.println(eInst.getMessage());
 			eInst.printStackTrace();
 		} catch (IllegalAccessException e) {
 			// TODO Auto-generated catch block
+                    System.err.println(e.getMessage());
 			e.printStackTrace();
 		}
 		return ret;
 	}
 
 	public Collection getConnectionAccessPoint() {
-		return connectionAccessPoint;
+	try {                
+                System.err.println("in get Connection point..: " + connectionAccessPoint.getName());
+            } catch (XMLDBException ex) {
+                System.err.println(ex.getMessage());
+                ex.printStackTrace();
+            }	
+            return connectionAccessPoint;
+            
 	}
 
 	public void setConnectionAccessPoint(Collection connectionAccessPoint) {
+            try {
+                System.err.println("in set Connection point..: " + connectionAccessPoint.getName());
+            } catch (XMLDBException ex) {
+                System.err.println(ex.getMessage());
+                ex.printStackTrace();
+            }
 		this.connectionAccessPoint = connectionAccessPoint;
 	}
+        
+        // liberare le risorse.. TODO
+        
+        public static void main(String[] args){
+            ExistConnection connection = new ExistConnection("147");
+            XMLResource xmlFile = null;
+            System.err.println(connection.connect());
+            try {
+                System.err.println(connection.getConnectionAccessPoint().getName());
+                xmlFile = (XMLResource) connection.getConnectionAccessPoint().createResource("test" + "-Modify.xml", "XMLResource");
+                xmlFile.setContent("<ciao>ciao</ciao>");
+                connection.getConnectionAccessPoint().storeResource(xmlFile);
+
+            } catch (XMLDBException ex) {
+                Logger.getLogger(ExistConnection.class.getName()).log(Level.SEVERE, null, ex);
+            } finally{
+                try{
+                    connection.getConnectionAccessPoint().close();
+                } catch (XMLDBException xe){
+                     Logger.getLogger(ExistConnection.class.getName()).log(Level.SEVERE, null, xe);
+                }
+            }
+        }
 	
 }

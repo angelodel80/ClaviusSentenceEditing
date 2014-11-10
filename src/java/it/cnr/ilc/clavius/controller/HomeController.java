@@ -21,7 +21,7 @@ public class HomeController extends BaseController {
     }
 
     public String homeAction() {
-        return "http://claviusontheweb.it";
+        return "homeView";
     }
 
     public String userAction() {
