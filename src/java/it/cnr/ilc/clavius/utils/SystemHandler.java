@@ -20,8 +20,8 @@ public class SystemHandler {
 
     public static String runProcess(String letter) {
         String ret = "";
-        String command = "java -jar";
-        ProcessBuilder procBuild = new ProcessBuilder(command, "C:/tmp/Clavius/integrazioneWebApp/storeExist.jar");
+        String command = "java";
+        ProcessBuilder procBuild = new ProcessBuilder(command, "-jar", "C:/tmp/Clavius/integrazioneWebApp/storeExist.jar");
         final Process proc;
 
         try {
