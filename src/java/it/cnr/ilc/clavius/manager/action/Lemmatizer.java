@@ -93,30 +93,26 @@ final public class Lemmatizer {
 
                 outBuilder.append("\n");
             }
-            
+
             // ATENZIONE SISTEMARE LA SCRITTURA/LETTURA DEI FILE!
             HandleConstants.setLetterRif(letter);
-            
-            //linux
-           
+
+            //server
            //HandleConstants.setWorkDir("/home/clavius/wapp/"+letter+"/");
-          
+           
             //windows
-            HandleConstants.setWorkDir("C:/tmp/Clavius/integrazioneWebApp/"+letter+"/");
-           
+            HandleConstants.setWorkDir("C:/tmp/Clavius/integrazioneWebApp/" + letter + "/");
+
            // HandleConstants.setLetterAnalyzed(letter);
-            
-           
-            
-            
-            HandleConstants.setTeiFile(letter+"-transcription.xml");
-            HandleConstants.setTaggedFile(HandleConstants.getWorkDir()+letter+"-tagged.txt");
-            HandleConstants.setTabFileAnalyzed(HandleConstants.getWorkDir()+letter+"-tokLemma.txt");
-            HandleConstants.setLetterAnalyzed("/Letter"+letter+"sent_analized");
-            HandleConstants.setFullTextFile(HandleConstants.getWorkDir()+letter+"-fullText.txt");
-            
+            HandleConstants.setTeiFile(letter + "-transcription.xml");
+            HandleConstants.setTaggedFile(HandleConstants.getWorkDir() + letter + "-tagged.txt");
+            HandleConstants.setTabFileAnalyzed(HandleConstants.getWorkDir() + letter + "-tokLemma.txt");
+            HandleConstants.setLetterAnalyzed("/Letter" + letter + "sent_analized");
+            HandleConstants.setFullTextFile(HandleConstants.getWorkDir() + letter + "-fullText.txt");
+
             HelperIO.writeOut(this.getOutBuilder(), HandleConstants.getTaggedFile()); //FIXME!!
-            ParseToken.main(new String[]{HandleConstants.getTaggedFile(), HandleConstants.getTabFileAnalyzed()});
+            //  ParseToken.main(new String[]{HandleConstants.getTaggedFile(), HandleConstants.getTabFileAnalyzed()});
+            runParseToken();
             try {
                 Document xmlSentences = TextUtils.TabToXml(HandleConstants.getTabFileAnalyzed(), true);
                 ClaviusUtils.makeSentenceXML(xmlSentences);
@@ -129,8 +125,14 @@ final public class Lemmatizer {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            
+
             lemmatizationRun = null;
         }
     }
+
+    synchronized private void runParseToken() {
+        ParseToken.main(new String[]{HandleConstants.getTaggedFile(), HandleConstants.getTabFileAnalyzed()});
+
+    }
+
 }

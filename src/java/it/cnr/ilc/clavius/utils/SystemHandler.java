@@ -21,7 +21,9 @@ public class SystemHandler {
     public static String runProcess(String letter) {
         String ret = "";
         String command = "java";
-        ProcessBuilder procBuild = new ProcessBuilder(command, "-jar", "C:/tmp/Clavius/integrazioneWebApp/storeExist.jar");
+        String context = letter;
+        ProcessBuilder procBuild = new ProcessBuilder(command, "-jar", "C:/tmp/Clavius/integrazioneWebApp/storeExist.jar",context); ///home/clavius/wapp/storeExist.jar 
+        System.err.println(procBuild.command());
         final Process proc;
 
         try {

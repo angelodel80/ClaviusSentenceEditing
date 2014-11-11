@@ -43,7 +43,7 @@ import org.primefaces.model.TreeNode;
 @Named
 public class ProofReaderController extends BaseController implements Serializable {
 
-    private String content = "PLUTO";
+    private String content = "";
     private HierarchicalTeiDocument documentTei;
 
     @Inject

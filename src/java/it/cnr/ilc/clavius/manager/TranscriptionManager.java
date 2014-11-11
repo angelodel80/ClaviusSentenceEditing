@@ -43,7 +43,12 @@ import org.xmldb.api.base.XMLDBException;
  */
 public class TranscriptionManager {
 
-    public static String BASE_URL = "http://claviusontheweb.it:8080/exist/rest//db/clavius/documents/";
+    //Exist prod
+    //public static String BASE_URL = "http://claviusontheweb.it:8080/exist/rest//db/clavius/documents/";
+    
+    //Exist dev
+    public static String BASE_URL = "http://claviusontheweb.it:8081/exist/rest//db/clavius/documents/";
+    
     public static String LOCAL_URL ="http://localhost:8080/exist/rest//db/clavius/documents/";
     public static String DOC_SUFFIX = "-transcription.xml";
 
@@ -102,11 +107,11 @@ public class TranscriptionManager {
 
         
         //SERVER
-       // HandleConstants.setWorkDir("/home/clavius/wapp/" + resourceIdentificator + "/");
+       //HandleConstants.setWorkDir("/home/clavius/wapp/" + resourceIdentificator + "/");
        
        
         //WINDOWS
-         HandleConstants.setWorkDir("C:/tmp/Clavius/integrazioneWebApp/" + resourceIdentificator + "/");
+        HandleConstants.setWorkDir("C:/tmp/Clavius/integrazioneWebApp/" + resourceIdentificator + "/");
         
         
         HandleConstants.setTeiFile(resourceIdentificator.concat(DOC_SUFFIX));
@@ -153,7 +158,7 @@ public class TranscriptionManager {
        
         //ExistManager.save(connection,new File(trg),HandleConstants.getLetterRif());
         
-        System.err.println(SystemHandler.runProcess("letter"));
+        System.err.println(SystemHandler.runProcess(HandleConstants.getLetterRif()));
         
     }
 
@@ -210,13 +215,12 @@ public class TranscriptionManager {
         }
     }
 
-    public String lemmatizationRun(String letter) {
+     public  String  lemmatizationRun(String letter) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         Lemmatizer lemmatizer = new Lemmatizer();
         lemmatizer.runLemmatization(getTeiDoc().getSentences(), letter);
         //System.err.println(lemmatizer.getOutBuilder());
         String ret = lemmatizer.getOutBuilder().toString();
-        lemmatizer = null;
         return ret;
     }
 }

@@ -13,10 +13,6 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Hashtable;
 import java.util.Vector;
-
-import org.apache.xmlrpc.XmlRpc;
-import org.apache.xmlrpc.XmlRpcClient;
-import org.apache.xmlrpc.XmlRpcException;
 import org.jdom2.Document;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;

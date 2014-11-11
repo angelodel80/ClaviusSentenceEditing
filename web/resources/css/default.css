@@ -184,3 +184,15 @@ html, body {
 .generateButtons {
     margin-top: 4px;
 }
+
+.ui-selectonemenu{
+    width: 100% !important;
+}
+.ui-selectonemenu-label{
+    width: 100% !important;
+}
+
+.ui-selectonemenu-items-wrapper {
+    height: auto !important;
+}
+

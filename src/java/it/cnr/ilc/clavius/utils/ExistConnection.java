@@ -38,7 +38,7 @@ public class ExistConnection {
 			Database db = (Database) c.newInstance();
 			DatabaseManager.registerDatabase(db);
                         System.err.println(collection.concat(context));
-			
+
                         Collection coll = DatabaseManager.getCollection(collection.concat(context),
 					"admin", "claviusproject");
                         

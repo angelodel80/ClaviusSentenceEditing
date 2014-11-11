@@ -14,7 +14,7 @@
                 Proofreading of the analyzed sentences
             </f:facet>
             
-            <p:ajax event="cellEdit" listener="#{proofReaderController.onCellEdit}" update=":proofreaderform" />
+            <p:ajax event="cellEdit" listener="#{proofReaderController.onCellEdit}" update="" />
             
             <p:column headerText="Token" style="width:33%">
                 <h:outputText value="#{res.token}" style="float: left; font-weight: normal; font-style: italic; margin-left: 15px" />
@@ -37,7 +37,7 @@
                         <h:outputText value="#{res.posTag[0]}" />
                     </f:facet>
                     <f:facet name="input">
-                        <p:selectOneMenu  value="#{res.posTag[0]}" styleClass="menu" panelStyleClass="panel" rendered="#{res.posTag.size() > 1}" style="width:100%">
+                        <p:selectOneMenu   effect="none" value="#{res.posTag[0]}" styleClass="menu" panelStyleClass="panel" rendered="#{res.posTag.size() > 1}" style="width:100%">
                             <f:selectItems value="#{res.posTag}" var="pos" itemLabel="#{pos}" itemValue="#{pos}" />
                         </p:selectOneMenu>
                     </f:facet>
@@ -50,7 +50,7 @@
                         <h:outputText value="#{res.person[0]}" />
                     </f:facet>
                     <f:facet name="input">
-                        <p:selectOneMenu value="#{res.person[0]}" styleClass="menu" panelStyleClass="panel" rendered="#{res.posTag.size() > 1}">
+                        <p:selectOneMenu  effect="none" value="#{res.person[0]}" styleClass="menu" panelStyleClass="panel" rendered="#{res.posTag.size() > 1}">
                             <f:selectItems value="#{res.person}" var="person" itemLabel="#{person}" itemValue="#{person}" />
                         </p:selectOneMenu>
                     </f:facet>
@@ -65,7 +65,7 @@
                         <h:outputText value="#{res.number[0]}" />
                     </f:facet>
                     <f:facet name="input">
-                        <p:selectOneMenu value="#{res.number[0]}" styleClass="menu" panelStyleClass="panel" rendered="#{res.posTag.size() > 1}">
+                        <p:selectOneMenu  effect="none" value="#{res.number[0]}" styleClass="menu" panelStyleClass="panel" rendered="#{res.posTag.size() > 1}">
                             <f:selectItems value="#{res.number}" var="number" itemLabel="#{number}" itemValue="#{number}" />
                         </p:selectOneMenu>
                     </f:facet>
@@ -82,7 +82,7 @@
                             <h:outputText value="#{res.tense[0]}" />
                     </f:facet>
                     <f:facet name="input">
-                        <p:selectOneMenu value="#{res.tense[0]}" styleClass="menu" panelStyleClass="panel" rendered="#{res.posTag.size() > 1}">
+                        <p:selectOneMenu  effect="none" value="#{res.tense[0]}" styleClass="menu" panelStyleClass="panel" rendered="#{res.posTag.size() > 1}">
                             <f:selectItems value="#{res.tense}" var="tense" itemLabel="#{tense}" itemValue="#{tense}" />
                         </p:selectOneMenu>
                     </f:facet>
@@ -97,7 +97,7 @@
                         <h:outputText value="#{res.mood[0]}" />
                     </f:facet>
                     <f:facet name="input">
-                        <p:selectOneMenu value="#{res.mood[0]}" styleClass="menu" panelStyleClass="panel" rendered="#{res.posTag.size() > 1}">
+                        <p:selectOneMenu  effect="none" value="#{res.mood[0]}" styleClass="menu" panelStyleClass="panel" rendered="#{res.posTag.size() > 1}">
                             <f:selectItems value="#{res.mood}" var="mood" itemLabel="#{mood}" itemValue="#{mood}" />
                         </p:selectOneMenu>
                     </f:facet>
@@ -112,7 +112,7 @@
                         <h:outputText value="#{res.voice[0]}" />
                     </f:facet>
                     <f:facet name="input">
-                        <p:selectOneMenu value="#{res.voice[0]}" styleClass="menu" panelStyleClass="panel" rendered="#{res.posTag.size() > 1}">
+                        <p:selectOneMenu  effect="none" value="#{res.voice[0]}" styleClass="menu" panelStyleClass="panel" rendered="#{res.posTag.size() > 1}">
                             <f:selectItems value="#{res.voice}" var="voice" itemLabel="#{voice}" itemValue="#{voice}" />
                         </p:selectOneMenu>
                     </f:facet>
@@ -126,7 +126,7 @@
                         <h:outputText value="#{res.gender[0]}" />
                     </f:facet>
                     <f:facet name="input">
-                        <p:selectOneMenu value="#{res.gender[0]}" styleClass="menu" panelStyleClass="panel" rendered="#{res.posTag.size() > 1}">
+                        <p:selectOneMenu  effect="none" value="#{res.gender[0]}" styleClass="menu" panelStyleClass="panel" rendered="#{res.posTag.size() > 1}">
                             <f:selectItems value="#{res.gender}" var="gender" itemLabel="#{gender}" itemValue="#{gender}" />
                         </p:selectOneMenu>
                     </f:facet>
@@ -140,7 +140,7 @@
                          <h:outputText value="#{res.cases[0]}" />
                     </f:facet>
                     <f:facet name="input">
-                        <p:selectOneMenu value="#{res.cases[0]}" styleClass="menu" panelStyleClass="panel" rendered="#{res.posTag.size() > 1}">
+                        <p:selectOneMenu  effect="none" value="#{res.cases[0]}" styleClass="menu" panelStyleClass="panel" rendered="#{res.posTag.size() > 1}">
                             <f:selectItems value="#{res.cases}" var="cases" itemLabel="#{cases}" itemValue="#{cases}" />
                         </p:selectOneMenu>
                     </f:facet>
@@ -154,7 +154,7 @@
                         <h:outputText value="#{res.degree[0]}" />
                     </f:facet>
                     <f:facet name="input">
-                        <p:selectOneMenu value="#{res.degree[0]}" styleClass="menu" panelStyleClass="panel" rendered="#{res.posTag.size() > 1}">
+                        <p:selectOneMenu  effect="none" value="#{res.degree[0]}" styleClass="menu" panelStyleClass="panel" rendered="#{res.posTag.size() > 1}">
                             <f:selectItems value="#{res.degree}" var="degree" itemLabel="#{degree}" itemValue="#{degree}" />
                         </p:selectOneMenu>
                     </f:facet>

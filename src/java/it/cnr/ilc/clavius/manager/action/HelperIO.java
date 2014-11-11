@@ -73,7 +73,7 @@ public class HelperIO {
         System.err.println("in fromFileToFile");
         File src = new File(srcFile);
         long lenghtSrc = src.length();
-        char[] buffer = new char[2*(int)lenghtSrc];
+        char[] buffer = new char[(int)lenghtSrc];
        
         if(src.exists()){
             System.err.println("src Exists.." + src.getAbsolutePath());
